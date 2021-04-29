@@ -1,0 +1,13 @@
+#MemberImage {
+    display: block;
+    margin: 10px auto;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+#loginForm{
+    margin-top:10%;
+}
+.skillone{
+    margin-right:3px;
+}
