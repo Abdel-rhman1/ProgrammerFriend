@@ -31,10 +31,11 @@ Route::group(['prefix'=>'dashboard'], function(){
     });
 
     Route::group(['prefix'=>'Items' , 'middleware'=>'auth'] , function(){
-        Route::get('/' , 'ItemController@index')->name('get.Items');
-        Route::get('add' ,'ItemController@add' )->name('Items.add');
+        Route::get('index/{id}' , 'ItemController@index')->name('get.Items');
+        Route::get('add' ,'ItemController@add' )->name('add.Items');
         Route::post('store' ,'ItemController@store')->name('Item.store');
         Route::get('edit/{id}' ,'ItemController@edit')->name('item.edit');
+        Route::post('update' , 'ItemController@update')->name('item.update');
         Route::get('delte/{id}' ,'ItemController@delete')->name('item.delete');
     });
     Route::group(['prefix'=>'Skills' , 'middleware'=>'auth'] , function(){
@@ -46,8 +47,26 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::get('/delete/{id}' , 'SkillController@delete')->name('deleteSkill');
         Route::post('get' , 'SkillController@getSuffix')->name('getSuffix');
     });
-
-});
+    Route::group(['prefix'=>'Jobs' , 'middleware'=>'auth'] , function(){
+        Route::get('index', 'JobController@index')->name('job.index');
+        Route::get('add' , 'JobController@add')->name('job.add');
+        Route::get('edit/{id}' , 'JobController@edit')->name('job.edit');
+        Route::post('store' ,'JobController@store')->name('job.store');
+        Route::post('update' , 'JobController@update')->name('job.update');
+        Route::get('delete/{id}' , 'JobController@delete')->name('job.delete');
+    });
+    Route::group(['middleware'=>'auth' , 'prefix'=>'course'] , function(){
+        Route::get('index' , 'CourseController@index')->name('getall');
+        Route::get('add' , 'CourseController@add')->name('add.course');
+        Route::post('store' , 'CourseController@store')->name('course.store');
+        Route::get('edit/{id}' , 'CourseController@edit')->name('course.edit');
+        Route::post('update' , 'CourseController@update')->name('course.update');
+        Route::get('delete/{id}' ,'CourseController@delete')->name('course.delete');
+    });
+    Route::group(['middleware'=>'auth' , 'prefix'=>'stat'] , function(){
+        Route::get('index' , 'StatController@index')->name('getstat');
+    });
+}); 
 
 //Route::get('/login' , 'LoginController@login')->name('login');
 //Route::post('/check' , 'LoginController@check')->name('login.admin');

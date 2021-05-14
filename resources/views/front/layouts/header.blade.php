@@ -9,4 +9,10 @@
     <link href="{{asset('css/front/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/front/front.css')}}" rel="stylesheet">
 </head>
-<body>
+
+@if (App::getLocale() == 'en')
+    <body style="direction:ltr">
+@else
+    <body style="direction:rtl">
+@endif
+

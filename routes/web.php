@@ -28,8 +28,40 @@ Route::get('locale/{locale}' , function($locale){
 
 Route::group(['middleware'=>'auth' , 'prefix'=>'prog'] , function(){
     Route::get('all' , 'MemberController@all')->name('allProg');
+    Route::get('getBycountry/{CountryID}' , 'MemberController@getByCountry')->name('getbyCountry');
+    Route::get('/getBySkill/{skill}' , 'MemberSkillController@check')->name('getBasedOnSkill');
+    Route::get('/getBydepart/{cat}' , 'MemberController@getBasedOnDepart')->name('BasedOnRole');
+    Route::get('/profile/{id}' , 'MemberController@showprofile')->name('Profile');
+    Route::post('/ShowMemberByName' , 'MemberController@showByName')->name('ShowMemberByName');
+    Route::post('/ShowMemberByJob' , 'MemberController@showByJob')->name('ShowMemberByjob');
+    
+    
 }); 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'Items' , 'midddleware'=>'auth'] , function(){
+    Route::get('index/{id}/{Name?}' , 'ItemController@getByCat')->name('getById');
+    Route::get('show/{id}' , 'ItemController@showItemPage')->name('showProject');
+    Route::post('increament' ,'ItemController@IncreaemntLikes')->name('Increament');
+    Route::post('/getBySkill' , 'ItemController@getBasedOnSkill')->name('getbasedOnName');
+    Route::get('/getBydate/{date}' , 'ItemController@getBasedOnDate')->name('getBasedOnDate');
+    Route::post('/showItemByName' , 'ItemController@ShowByName')->name('ShowItemByName');
+    
+});
+Route::group(['middleware'=>'auth' , 'prefix'=>'course' , 'namespace'=>'front'] , function(){
+    Route::get('index' , 'CourseController@index')->name('Course.index');
+    Route::get('byDepart/{id}' , 'CourseController@getByDepartment')->name('BasedOnDepart');
+    Route::get('/show/{id}' , 'CourseController@showCourse')->name('showCourse');
+    Route::post('/show' , 'CourseController@showByprice')->name('showByprice');
+    Route::post('/showbyCat' , 'CourseController@showByCat')->name('showByCat');
+    Route::post('/showbyCat' , 'CourseController@showByCat')->name('showByCat');
+    Route::post('/showbyName' , 'CourseController@showByName')->name('showByName');
+});
+Route::group(['prefix'=> 'Skills' , 'middleware'=>'auth'] , function(){
+    Route::post('/index' , 'SkillController@indexByName')->name('getByName'); 
+    Route::post('/getSkills' , 'SkillController@indexCollection')->name('getSkillscollection');
+    
+});
+Route::get('aboutus' , 'HomeController@aboutus')->name('aboutus');

@@ -1,4 +1,4 @@
-@include('front.index')
+@include('backend.index')
 @section('title')
     Add New Skills
 @endsection
@@ -6,6 +6,17 @@
 <div class='card'>
     <div class='card-header'>Mew Skills</div>
         <div class='card-body'>
+            @if (Session::has('Inserted'))
+            <div class="alert alert-success text-center col-sm-8 offset-sm-2">
+                <span>{{Session::get('Inserted')}}</span>
+            </div>
+            @endif
+            @if (Session::has('Error'))
+            <div class="alert alert-danger text-center col-sm-8 offset-sm-2">
+                <span>{{Session::get('Error')}}</span>
+            </div>
+            @endif
+            
             <form action={{route('soteSkill')}} method='POST' enctype="multipart/form-data">
                 @csrf
                 <div class='form-group row'>
@@ -30,7 +41,7 @@
                     <label class='control-label col-sm-2' for='CatInput'>Category</label>
                     <select class='form-control col-sm-8' id='CatInput' name='Cat'>
                         @foreach ($Cats as $cat)
-                            <option value='{{$cat->Name}}'>{{$cat->Name}}</option>
+                            <option value='{{$cat->ID}}'>{{$cat->Name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -39,48 +50,19 @@
                         {{$message}}
                     </div>
                 @enderror
-                <div class='from-group row'>
-                    <label class='col-sm-2 control-label' for='SkillInput'>Skills</label>
-                    <input type="text" id='SkillInput' name='Skill' class='col-sm-8 form-control'>
+                <div class='form-group row'>
+                    <label class='control-label col-sm-2' for='VisInput'>Visiable </label>
+                    <input type="number" max="1" min="0" name='visi' class='form-control col-sm-8' placeholder="Type Skill visiability level" id="VisInput">  
                 </div>
-                <div class='row from-group' id='putSearch' style="margin-top:20px">
-                    <select class='form-control offset-sm-2 col-sm-8' id='content'>
-                        
-                    </select>
+                @error('visi')
+                    <div class='text-center alert alert-danger col-sm-8 offset-sm-2'>
+                        {{$message}}
+                    </div>
+                @enderror
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success col-sm-2 offset-sm-2" value="Save">
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-        $('#SkillInput').keyup(function(){
-            var SerachKeyword = $(this).val();
-            //if(empty(SerachKeyword)) $('#putSearch #content option').remove();
-            $.ajax({
-                method:'post',
-                url : "{{route('getSuffix')}}",
-                data:{
-                    '_token' : "{{csrf_token()}}",
-                    'ID' : $("input[name='Skill']").val(),
-                },
-                success:function(one , tow , three){
-                    
-                    if(one===null) console.log(empty);
-                    else console.log(one);
-                    console.log(tow);
-                    console.log(one.length)
-                    $('#putSearch #content option').remove();
-                    for(var i=0;i<one.length;i++){
-                        $('#putSearch #content').append("<option class='' value=" +one[i].Name+">"+one[i].Name+"</option>");
-                    }
-                },
-                error:function(one , tow){             
-                    console.log('Error');
-                },
-            });
-            
-            
-        });
-    });
-</script>

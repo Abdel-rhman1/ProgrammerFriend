@@ -10,4 +10,8 @@
     <link href="{{asset('css/backend/backend.css')}}" rel="stylesheet">
     <title>@yield('title' , 'dashboard')</title>
 </head>
-<body>
+@if (App::getLocale() == 'en')
+    <body style="direction:ltr">
+@else
+    <body style="direction:rtl">
+@endif

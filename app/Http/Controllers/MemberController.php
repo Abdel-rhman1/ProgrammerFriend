@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
@@ -20,7 +19,9 @@ class MemberController extends Controller
                'Name' => 'required|max:100',
                'password'=>'required|min:6',
                'email'=>'required|email',
-               'photo'=>'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048'
+               'photo'=>'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048',
+               'Role'=>'required|min:3',
+               'AboutYou'=>'required|min:100',
            ],
            [
                 'Name.required'=> __('errors.Name.req'),
@@ -31,8 +32,11 @@ class MemberController extends Controller
                 'email.email'=>__('errors.email.email'),
                 'photo.required'=>__('errors.photo.req'),
                 'photo.mimes'=>__('errors.photo.mimes'),
-                'photo.max'=>__('errors.photo.max')
-
+                'photo.max'=>__('errors.photo.max'),
+                'Role.required'=>__('errors.Name.req'),
+                'Role.min'=>__('errors.password.min'),
+                'AboutYou.required'=>__('errors.Name.req'),
+                'AboutYou.min'=>__('errors.password.min'),
            ]
        );
        if($val->fails()){
@@ -41,13 +45,19 @@ class MemberController extends Controller
            $hashed = Hash::make($res->password, [
             'rounds' => 12,
             ]);
+            $path = 'images/Members';
+            $imageExten = $res->photo->getClientOriginalExtension();
+            $imageName = $res->Name . '.' .$imageExten;
            $Member = Member::create([
                'Name'=>$res->Name,
                'email'=>$res->email,
-               'photo'=>$res->photo,
+               'photo'=>$imageName,
                'password'=>$hashed,
+               'role'=>$res->Role,
+               'about_You'=>$res->AboutYou,
            ]);
            if($Member){
+               $res->photo->move($path , $imageName);
                return redirect()->back()->with(['Inserted' => __('sucess.inserted')]);
            }else{
                return redirect()->back()->with(['error'=>__('errors.errorInsertMem')]);
@@ -82,6 +92,63 @@ class MemberController extends Controller
         }
     }
     public function all(){
-        return view('front.members.index');
+        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
+        ->join('job' , 'job.ID' , '=' , 'members.role')->get();
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function getByCountry ($CountryID){
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        $Members = Member::where('CountryID' ,$CountryID )->get();
+        return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function getBasedOnSkill($skill){
+        //$Members = Member::where('skills' ,'like' , '%' . $skill . '%')->get();
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        //return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function getBasedOnDepart($depart){
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
+        ->join('job' , 'job.ID' , '=' , 'members.role')
+        ->where('job.CatID' , $depart)->get();
+        return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function showByName(Request $res){
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
+        ->join('job' , 'job.ID' , '=' , 'members.role')
+        ->where('members.Name' ,'like', '%' . $res->Name . '%')->get();
+        return view('front.members.search' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function showByJob(Request $res){
+        $Cats = App('App\Http\Controllers\CategorieController')->index();
+        $Countries = App('App\Http\Controllers\CountriesController')->index();
+        $skills = App('App\Http\Controllers\SkillController')->indexCollection();
+        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
+        ->join('job' , 'job.ID' , '=' , 'members.role')
+        ->where('job.Name' ,'like', '%' . $res->jobName . '%')->get();
+        return view('front.members.search' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+    }
+    public function showprofile($id){
+        $skills = App('App\Http\Controllers\MemberSkillController')->get($id);
+        $Works = Member::where('members.ID' , $id)->join('items' , 'items.User_id' , '=' , 'members.ID')->get();
+        $member = Member::select('members.ID' , 'members.Name' , 'job.Name as JobName' , 'countries.Name as CName' , 'members.about_You')->
+        join('job' , 'members.role' ,  '=' , 'job.ID')->join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
+        return view('front.members.profile' , compact('member' , 'skills' , 'Works'));
     }
 }

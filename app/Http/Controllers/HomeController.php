@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('front.home');
+    }
+    public function aboutus(){
+        return view('front.about');
     }
 }

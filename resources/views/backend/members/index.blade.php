@@ -15,13 +15,15 @@
             {{Session::get('errorIndelete')}}
         </div>
     @endif
-   
+   <div class="table-responsive">
     <table class="table table-striped table-dark">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Brief</th>
             <th scope="col">Controllers</th>
         </tr>
         </thead>
@@ -31,6 +33,8 @@
                 <th scope="row">{{$Member->ID}}</th>
                 <td>{{$Member->Name}}</td>
                 <td>{{$Member->email}}</td>
+                <td>{{$Member->role}}</td>
+                <td>{{$Member->about_You}}</td>
                 <td>
                     <span>
                         <a href="{{route('member.edit' , $Member->ID)}}" class="btn btn-success">update</a>
@@ -43,6 +47,7 @@
         @endforeach
         </tbody>
     </table>
+</div>
     <span class="btn btn-primary btn btn-sm">
         <a href="{{route('Member.add')}}" style="color: white; text-decoration: none">
              Add New Member

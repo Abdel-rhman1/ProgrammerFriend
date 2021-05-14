@@ -8,7 +8,7 @@ class Item extends Model
 {
     protected $table = 'items';
     protected $fillable =  [
-        'Name' , 'rul' , 'contributes' , 'details' , 'start_time' , 'end_time',
+        'Name' , 'rul' , 'contributes' , 'details' , 'start_time' , 'end_time', 'skills','CatID','photo' , 'Likes','Views'
     ];
     protected $hidden = [
 

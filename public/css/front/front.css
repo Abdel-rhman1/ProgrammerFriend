@@ -1,0 +1,193 @@
+body{
+    background: #f0f0f0;
+}
+.allProject{
+    width:216px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+.inner{
+    padding:8px;
+}
+.tail{
+    width:200px;
+    border:2px solid #eee;
+    height: 140px;
+    margin-bottom: 20px;
+    background: #ddd;
+    overflow-y: auto;
+    overflow-x:hidden ;
+    padding:8px;
+    background: #fff;
+}
+.head{
+    width:100%;
+    padding: 8px;
+}
+a{
+    text-decoration: none;
+    color:#000;
+}
+a:hover{
+    text-decoration: none;
+    color:#000;
+}
+.work-card{
+    background: #fff;
+    height: 200px;
+    padding:10px;
+}
+.custom-hr{
+    border:1px solid #eee;
+    margin-left:-10px;
+    margin-right:-10px;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+.heading{
+    padding:5px;
+}
+.body-work-card{
+
+}
+.likes{
+    padding:5px;
+}
+.likes p{
+    display: inline;
+    margin-right:80px;
+}
+.work-card2{
+    top: -180px;
+    background: #fff;
+    position: relative;
+    height: 200px;
+    padding:10px;
+    margin-top: 15px;
+}
+.buttonView{
+    margin: 73px auto;
+    display: block;
+    
+}
+.work-details{
+    height: 385px;
+}
+.work-description{
+    margin:10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.heading-work-details{
+    margin:10px 20px;
+}
+.shwolink{
+    width:100%;
+    padding:10px;
+}
+.OuterLayout{
+    height: fit-content;
+   
+    background: #fff;
+    padding: 10px;
+}
+.member{
+    margin-top:100px;
+}
+.MemberHead h4{
+    margin-bottom: 10px;
+    color:#86bce1;
+    cursor: pointer;
+}
+.Brief{
+    clear: both;
+}
+.MemberRole{
+    margin-left: 10px;
+    color: rgba(0,0,0,0.7);
+}
+.RoleJob{
+    line-height: 10px;
+}
+.Employee{
+    margin-right: 20px !important;
+    margin-top: 40px;
+}
+.MemberImage{
+    display: inline;
+}
+.MemberImage img{
+    width: 150px;
+    height: 150px;
+    border-radius:50%;
+}
+.allItems{
+    margin-top:50px;
+}
+.carousel-item img{
+    height:450px !important;
+}
+.asSelectBox{
+    background: #fff;
+    padding: 5px;
+    max-height: 200px;
+    overflow-y:auto;
+    overflow-x: hidden;
+    position: relative;
+}
+.skill{
+    padding: 6px;
+}
+.skill:hover{
+    background: #2386c8;
+}
+.allSkills{
+    height: 150px;
+    overflow-y: auto;
+    background: #fff;
+}
+.allSkills a{
+    display:block;
+    padding:10px;
+    text-decoration: none;
+}
+.allSkills a:hover{
+    background: #2386c8;
+} 
+
+.memberhead2{
+    height: 400px !important;
+    background: #fff;
+}
+.profileInfo{
+   
+}
+.profileInfo img{
+    border-radius: 50%;
+    margin-top: 50px;
+}
+.profileInfo p{
+    font-size: 150%;
+}
+.memberInfofooter{
+    margin-top: 7px;
+}
+.sectionhead{
+    padding:10px;
+    cursor: pointer;
+}
+
+.sectionhead{
+    font-size: 110%;
+}
+.About_Youclass{
+    background:#fff;
+    padding: 20px;
+    height: auto;
+    margin-top: 30px;
+}
+.stat{
+    margin-top: 30px;
+    background: #fff;
+    height: auto;
+    padding:20px
+}

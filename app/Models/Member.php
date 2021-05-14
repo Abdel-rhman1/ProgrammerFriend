@@ -8,7 +8,7 @@ class Member extends Model
 {
     protected $table = 'members';
     protected $fillable = [
-        'ID' , 'Name' , 'email' , 'password',
+        'ID' , 'Name' , 'email' , 'password', 'role' , 'about_You','photo',
      ];
     protected $hidden = [
         'created_at' , 'updated_at' , 'password'

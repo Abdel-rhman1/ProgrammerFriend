@@ -45,6 +45,36 @@
                         {{$message}}
                     </div>
                 @enderror
+
+                <div class="form-group form-group-lg row">
+                    <label class="col-form-label col-sm-2" for="RoleInput">
+                        Role
+                    </label>
+                    <input type="text" name="Role" id="RoleInput" class="form-control col-sm-8" placeholder="Type Your Role">
+                </div>
+                @error('Role')
+                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                        {{$message}}
+                    </div>
+                @enderror
+                
+                <div class="form-group form-group-lg row">
+                    <label class="col-form-label col-sm-2" for="AboutYouInput">
+                        About You
+                    </label>
+                    <textarea col="" rows="6" name="AboutYou" id="AboutYouInput" class="form-control col-sm-8" placeholder="Type Your Role"></textarea>
+                </div>
+                
+                <div class="row">
+                    <span class="col-sm-3 offset-sm-7">
+                        100 Characters Is required
+                    </span>
+                </div>
+                @error('AboutYou')
+                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                        {{$message}}
+                    </div>
+                @enderror
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="emailInput">
                         email

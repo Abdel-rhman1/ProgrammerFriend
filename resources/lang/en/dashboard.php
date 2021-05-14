@@ -11,4 +11,6 @@
         'lan1'=>'Arabic',
         'lan2'=>'English',
         'skill'=>'Skills',
+        'job'=>'Jobs',
+        'course'=>'Courses'
     ];

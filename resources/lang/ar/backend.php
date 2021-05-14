@@ -1,0 +1,20 @@
+<?php 
+return [
+    'ID'=>'التسلسل',
+    'Name'=>'الإسم',
+    'NameplaceCourse'=>'إدخل اسم الكورس',
+    'Instructor'=>'مقدم الشرح',
+    'Price'=>'السعر',
+    'PricePlace'=>'أدخل سعر الكورس',
+    'Date'=>'التاريخ',
+    'Controllers'=>'المتحكمات',
+    'edit' => 'تحديث',
+    'delete'=>'حذف',
+    'allcourse' =>'الكورسات',
+    'addnewCourse'=>'إضافة كورس جديد',
+    'Free'=>'مجانا',
+    'Photo' => 'الصوره',
+    'details'=>'التفاصيل',
+    'detailsPlace'=>'أدخل تفاضيل الطورس',
+    'Save'=>'حفظ',
+];

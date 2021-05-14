@@ -8,12 +8,12 @@
         <div class="card-header">Add New Items</div>
         <div class="card-body">
             @if(Session::has('Inserted'))
-                <div class="alert alert-success text-center  offset-sm-2 col-sm-8">
+                <div class="alert alert-success text-center  offset-sm-2 col-sm-8 btn btn-sm">
                     {{Session::get('Inserted')}}
                 </div>
             @endif
                 @if(Session::has('error'))
-                    <div class="alert alert-danger text-center  offset-sm-2 col-sm-8">
+                    <div class="alert alert-danger text-center  offset-sm-2 col-sm-8 btn btn-sm">
                         {{Session::get('error')}}
                     </div>
                 @endif
@@ -27,7 +27,7 @@
                     <input type="text" name="Name" id="NameInput" class="form-control col-sm-8" placeholder="Type Your Name">
                 </div>
                 @error('Name')
-                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8 btn btn-sm">
                         {{$message}}
                     </div>
                 @enderror
@@ -38,10 +38,19 @@
                     <input type="url" name="Url" id="URlInput" class="form-control col-sm-8" placeholder="Type Your Url">
                 </div>
                 @error('Url')
-                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8 btn btn-sm">
                         {{$message}}
                     </div>
                 @enderror
+                <div class='from-group row'>
+                    <label class='col-form-label col-sm-2' for='photoInput'>
+                        Photo
+                    </label>
+                    <input type='file' name='photo' id="photoInput" class='form-control col-sm-8' style='margin-bottom:10px'>
+                    @error('photo')
+                        {{$message}}
+                    @enderror
+                </div>
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="contributeInput">
                         contributes
@@ -57,19 +66,21 @@
                     <label class="col-form-label col-sm-2" for="detailsInput">
                         details
                     </label>
-                    <input type="text" name="details" id="detailsInput" class="form-control col-sm-8" placeholder="Type Your email">
+                    <textarea name="details" id="detailsInput" class="form-control col-sm-8" placeholder="Type Project details"></textarea>
                 </div>
                 @error('details')
-                <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                <div class="alert alert-danger text-center offset-sm-2 col-sm-8 btn btn-sm">
                     {{$message}}
                 </div>
                 @enderror
-
                 <div class='from-group row'>
                     <label class='col-sm-2 control-label' for='SkillInput'>Skills</label>
                     <input type="text" id='SkillInput' name='Skill' class='col-sm-8 form-control'>
                 </div>
-                <input type="text" hidden id="last" value="">
+                <input type="text" hidden id="last" value="" name='skills'>
+                @error('skills')
+                    {{$message}}
+                @enderror
                 <div class='row from-group' id='putSearch' style="margin-top:10px;margin-bottom:10px">
                     <select class='form-control offset-sm-2 col-sm-8' id='content' style='margin-top:10px'>
                         
@@ -87,7 +98,7 @@
                     <input type="date" name="startTime" id="StartInput" class="form-control col-sm-8" placeholder="Type Your email">
                 </div>
                 @error('startTime')
-                <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                <div class="alert alert-danger text-center offset-sm-2 col-sm-8 btn btn-sm">
                     {{$message}}
                 </div>
                 @enderror
@@ -99,7 +110,7 @@
                     <input type="date" name="EndTime" id="EndInput" class="form-control col-sm-8" placeholder="Type Your email">
                 </div>
                 @error('EndTime')
-                <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                <div class="alert alert-danger text-center offset-sm-2 col-sm-8 btn btn-sm">
                     {{$message}}
                 </div>
                 @enderror
@@ -113,11 +124,12 @@
 @include('backend.layouts.footer')
 <script>
     $(function(){
+        var Skills = [];
         $('#content').change(function(){
             var oldValue = $('#last').val();
             $('#last').val(oldValue+$(this).val()+'_');
-            alert(oldValue);
-            $('#Skills').append("<span class='alert alert-success btn btn-sm'>"+$(this).val()+"</span>")
+            Skills.push($(this).val());
+            $('#Skills').append("<span class='badge badge-primary btn btn-sm skillsbadge'>"+$(this).val()+"</span>")
             $(this).find('[value='+$(this).val()+']').remove();
         });
         $('#SkillInput').keyup(function(){
@@ -130,8 +142,7 @@
                     '_token' : "{{csrf_token()}}",
                     'ID' : $("input[name='Skill']").val(),
                 },
-                success:function(one , tow , three){
-                    
+                success:function(one , tow , three){     
                     if(one===null) console.log(empty);
                     else console.log(one);
                     console.log(tow);
@@ -139,15 +150,15 @@
                     $('#putSearch #content option').remove();
                     $('#putSearch #content').append("<option id='...' class='skillone' value='...'></option>");
                     for(var i=0;i<one.length;i++){
-                        $('#putSearch #content').append("<option id="+one[i].Name+" class='skillone' value="+one[i].Name+">"+one[i].Name+"</option>");
+                        if(!Skills.includes(one[i].Name)){
+                            $('#putSearch #content').append("<option id="+one[i].Name+" class='skillone' value="+one[i].Name+">"+one[i].Name+"</option>");
+                        }
                     }
                 },
                 error:function(one , tow){             
                     console.log('Error');
                 },
             });
-            
-            
         });
     });
 </script>
