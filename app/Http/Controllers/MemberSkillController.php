@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MemberSkillController extends Controller
 {
+    
     public function addSkillToMember($MemberID , $SkillID){
         MemberSkill::create([
             'SkillID' => $SkillID,

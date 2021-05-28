@@ -3,9 +3,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Validator;
+use Auth;
+
 use Illuminate\Support\Facades\Hash;
 class MemberController extends Controller
 {
+    
+    public function login(){
+        return view('auth.admin_login');
+    }
+    public function getavatar(Request $res){
+        $member =  Member::where('ID' , $res->id)->get();
+        return  view('front.members.image' , compact('member'));
+    }
+    public function save(Request $res){
+        $val = Validator::make($res->all(),[
+            'email'=> 'bail|required',
+            'password' => 'required|min:6',
+        ],[
+            'email.required' => 'mail is required',
+            //'email.email' =>'email must contain @ and .' ,
+            'password.required'=>'password is required',
+            'password.min'=>'password must be greater than 6 characters',
+        ]);
+        if($val->fails()){
+            return redirect()->back()->witherrors($val)->withInputs($res->all());
+        }
+        if(Auth::guard('member')->attempt(['email'=> $res->email , 'password'=> $res->password])){
+            return view('backend.index');
+        }else{
+            return back()->withInput($res->only('email'));
+        }
+    }
     public function index(){
         $Memebers = Member::get();
         return view('backend.members.index' , compact('Memebers'));

@@ -15,6 +15,9 @@ class ItemController extends Controller
             )->paginate(10);
         return view('backend.items.index' , compact('Items'));
     }
+    public function addnewItem(){
+        return view('front.items.add');
+    }   
     public function add(){
         return view('backend.items.add');
     }

@@ -2,7 +2,8 @@
 @section('title')
     All Programmers
 @endsection
-<div class='container row member'>
+<div class='container member'>
+    <div class="row">
     <div class="filterOption col-sm-3">
         <h5>Seach About Member</h5>
         <div class="form-group">
@@ -72,6 +73,7 @@
 </div>
 </div>
 @endif
+</div>
 </div>
 <script>
     

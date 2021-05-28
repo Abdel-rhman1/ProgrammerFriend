@@ -1,16 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\front;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Validator;
+use App\Http\Controllers\Controller;
 class JobController extends Controller
 {
-    
     public function index(){
         $jobs = Job::get();
-        return view('backend.jobs.index' , compact('jobs'));
+        return view('front.jobs.index' , compact('jobs'));
+    }
+    public function SearchByFirst(Request $res){
+        $Name = $res->fisrt;
+        $jobs = Job::where('Name' , 'like' , '%' . $Name . '%')
+        ->orwhere('skills' , 'like' , '%' . $Name . '%')->get();
+        return view('front.jobs.search' , compact('jobs'));
     }
     public function add(){
         return view('backend.jobs.add');

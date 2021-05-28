@@ -72,10 +72,12 @@ a:hover{
 }
 .work-details{
     height: 385px;
+
 }
 .work-description{
-    margin:10px 20px;
+    margin:100px 10px;
     font-family: 'Courier New', Courier, monospace;
+    height: auto;
 }
 .heading-work-details{
     margin:10px 20px;
@@ -190,4 +192,56 @@ a:hover{
     background: #fff;
     height: auto;
     padding:20px
+}
+.centerDiv{
+    padding:20px;
+    background: #dce6f1;
+    border-radius: 12px;
+    margin-bottom: 35px;;
+}
+.DivAllJobs{
+    background: #fff;
+    height: auto;
+    padding:20px;
+    border-radius: 12px;
+    margin-bottom: 35px;;
+
+}
+.jobDiv{
+    background: #fff;
+    padding:20px;
+    height: 180px;
+    border:1px solid #ddd;
+    cursor: pointer;
+    border-radius: 10px;;
+}
+.jobDiv:hover{
+    border:1px solid #9999;
+    box-shadow:  1px 2px #888888;
+}
+.UserJob{
+    margin-top: 100px;
+}
+.share_post{
+    background: #fff;
+    border-radius: 10px;
+    height: 140px;
+    padding:20px;
+    cursor: pointer;
+}
+.share_post input {
+    border-radius: 30px;
+}
+.writepost{
+    background: #fff;
+}
+.writepost_heading{
+    padding: 20px;
+}
+#avatar{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right:10px;
+    cursor: pointer;
 }

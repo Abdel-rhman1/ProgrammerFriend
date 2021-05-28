@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use Validator;
 class SkillController extends Controller
 {
+    
     public function index(){
         $Skills=Skill::select('skills.ID','skills.Name' , 'skills.important' ,
         'skills.visiable' , 'categories.Name as ItemName')->join('categories' , 'skills.ItemID' , '=' , 'categories.ID')->get();

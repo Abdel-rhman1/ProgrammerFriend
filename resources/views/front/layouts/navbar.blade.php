@@ -1,5 +1,8 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="container">
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('home')}}"> {{__('header.home_page')}} <span class="sr-only">(current)</span></a>
@@ -27,6 +30,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('aboutus')}}">{{__('header.about')}}</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('index.job')}}">{{__('Jobs')}}</a>
+            </li>
+
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{__('header.lang')}}
@@ -46,9 +54,12 @@
             @else
             <form class="form-inline my-2 my-lg-0 mr-auto">
         @endif
-       
-            <input class="form-control mr-sm-2" type="search" placeholder="{{__('header.SeachPlace')}}" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{__('header.Seabu')}}</button>
+            
+            
+            @if(Session::has('Useremail'))
+                <span id="avatar"></span>
+            @endif
         </form>
     </div>
+</div>
 </nav>

@@ -2,8 +2,9 @@
 @section('title')
     All Courses
 @endsection
-<div class="container row" style="margin-top: 50px ; margin-bottom:50px">
-        <div class=" filterOption col-sm-3">
+<div class="container" style="margin-top: 50px ; margin-bottom:50px">
+    <div class="row">    
+    <div class=" filterOption col-sm-3">
             <h5 class="">Search About Course</h5>
             <div class="form-group">
                 <input type="text" class="form-control" name="Name" id="Name">
@@ -27,13 +28,18 @@
                     
                 </select>
             </div>
+            <div class="">
+                <a href="{{route('addNewCourse')}}" class="btn btn-success" style="margin-top:10px">
+                    Add New Course
+                </a>
+            </div>
         </div>
         <div class='col-sm-9 row' id="Content">
-            @foreach ($courses as $course)  
+            @foreach ($courses as $course)
             <div class='col-sm-4'>
+                <a href="{{route('course.profile' , $course->CID)}}">
                 <div class='allProject'>
                 <div class='caption'>
-                   
                     <div class='inner'>
                         <img src="{{asset('images/courses/'.$course->Cphoto)}}" width="200px" height="200px">
                     </div>
@@ -48,6 +54,7 @@
                         </a>
                     </div>
             </div>
+            </a>
         </div>
         @endforeach
         
@@ -60,6 +67,7 @@
 @endif
         </div>
     </div>
+</div>
 <script>
     
     $(function(){

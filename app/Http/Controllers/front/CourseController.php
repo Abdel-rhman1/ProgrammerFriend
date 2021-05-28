@@ -9,14 +9,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller
 {
+    
     public function index(){
         $courses = Course::select('courses.ID as CID' , 'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->get();
         $departs = Categorie::select('categories.Name' , 'categories.ID')->get();
         return view('front.courses.index' , compact('courses' , 'departs'));
     }
+    public function addNewCourse(){
+        $members = Member::get();
+        return view('front.courses.add' , compact('members'));
+    }
+    public function showCourseProfile($id){
+        $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
+        ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
+        return view('front.courses.courseShow' , compact('course'));
+    }
     public function showByprice(Request $res){
-        $courses = Course::select('courses.ID as CID' , 'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
+        $courses = Course::select('courses.ID as CID' , 'courses.taken as Ctoken', 'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('Price' , '<=' , $res->price)->get();
         return view('front.courses.search' , compact('courses'));
     }

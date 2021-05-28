@@ -44,10 +44,10 @@
                 <td>{{$course->Date}}</td>
                 <td>
                     <span>
-                        <a href="{{route('course.edit' , $course->ID)}}" class="btn btn-success btn btn-sm">{{__('backend.edit')}}</a>
+                        <a href="{{route('course.edit' , $course->CID)}}" class="btn btn-success btn btn-sm">{{__('backend.edit')}}</a>
                     </span>
                     <span>
-                        <a href="{{route('course.delete' , $course->ID)}}"class="btn btn-danger btn btn-sm" onclick="return confirm('You Sure To delete This Item');">{{__('backend.delete')}}</a>
+                        <a href="{{route('course.delete' , $course->CID)}}"class="btn btn-danger btn btn-sm" onclick="return confirm('You Sure To delete This Item');">{{__('backend.delete')}}</a>
                     </span>
                 </td>
             </tr>

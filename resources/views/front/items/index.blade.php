@@ -2,7 +2,8 @@
 @section('title')
     All Projects
 @endsection
-<div class='container row' style="margin-top:50px">
+<div class='container' style="margin-top:50px">
+    <div class="row">
         <div class='col-sm-3'>
             <div class="box">
                 <label for="KeyWord">
@@ -51,6 +52,12 @@
                    </select>
                 </div>
             </div>
+            <div>
+                <a href="{{route('addNewItem')}}" class="btn btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Add New Project
+                </a>
+            </div>
         </div>
         <div class="col-sm-9 row" id="contentItems">
         @foreach ($items as $item)  
@@ -71,15 +78,17 @@
             </div>
         </div>
         @endforeach
-    </div>
+    
         @if (count($items) == 0)
         <div class="ThereNomatches alert alert-danger text-center col-sm-9" style="height:50px">
             <span>
                 There No Results mathes Your Searches
             </span>
       </div>
+    </div>
 @endif
     </div>
+</div>
 </div>
 <script>
     $(function(){

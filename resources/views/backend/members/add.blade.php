@@ -66,8 +66,8 @@
                 </div>
                 
                 <div class="row">
-                    <span class="col-sm-3 offset-sm-7">
-                        100 Characters Is required
+                    <span class="col-sm-4 offset-sm-7" id="allText">
+                        <span id="numberRemined"> 100 </span> Characters Is required
                     </span>
                 </div>
                 @error('AboutYou')
@@ -105,3 +105,16 @@
     </div>
 </div>
 @include('backend.layouts.footer')
+<script>
+    $(function(){
+        $('#AboutYouInput').keyup(function(){
+            if($(this).val().length < 100){
+                var len = $(this).val().length;
+                $('#numberRemined').text(100 - len);
+            }else if($(this).val().length == 100){
+                $("#allText").text("You Entered More Than The required");
+                $('#allText').css('color' , 'green');
+            }
+        });
+    });
+</script>

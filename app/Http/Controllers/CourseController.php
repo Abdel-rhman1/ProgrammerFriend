@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+    
     public function index(){
-        $courses = Course::select('courses.ID','courses.Name as CName' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
+        $courses = Course::select('courses.ID as CID','courses.Name as CName' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->get();
         return view('backend.courses.index' , compact('courses'));
     }
+
     public function add(){
         $members = Member::get();
         return view('backend.courses.add' , compact('members'));

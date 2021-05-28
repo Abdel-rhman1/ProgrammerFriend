@@ -19,9 +19,9 @@ Route::group(['prefix'=>'dashboard'], function(){
     Route::get('/' , function(){
 //        return view('');
         return view('backend.index');
-    });
+    })->name('admin.dashboard')->middleware('auth:member');
 
-    Route::group(['prefix'=>'Member' , 'middleware'=>'auth'] , function(){
+    Route::group(['prefix'=>'Member'] , function(){
         Route::get('/' , 'MemberController@index')->name('get.members');
         Route::get('add' , 'MemberController@add')->name('Member.add');
         Route::post('store' , 'MemberController@store')->name('member.store');
@@ -30,7 +30,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::get('delete/{id}' , 'MemberController@delete')->name('member.delete');
     });
 
-    Route::group(['prefix'=>'Items' , 'middleware'=>'auth'] , function(){
+    Route::group(['prefix'=>'Items'] , function(){
         Route::get('index/{id}' , 'ItemController@index')->name('get.Items');
         Route::get('add' ,'ItemController@add' )->name('add.Items');
         Route::post('store' ,'ItemController@store')->name('Item.store');
@@ -38,7 +38,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::post('update' , 'ItemController@update')->name('item.update');
         Route::get('delte/{id}' ,'ItemController@delete')->name('item.delete');
     });
-    Route::group(['prefix'=>'Skills' , 'middleware'=>'auth'] , function(){
+    Route::group(['prefix'=>'Skills'] , function(){
         Route::get('index' , 'SkillController@index')->name('getSkills');
         Route::get('add' , 'SkillController@add')->name('addNewSkill');
         Route::post('store' , 'SkillController@store')->name('soteSkill');
@@ -47,7 +47,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::get('/delete/{id}' , 'SkillController@delete')->name('deleteSkill');
         Route::post('get' , 'SkillController@getSuffix')->name('getSuffix');
     });
-    Route::group(['prefix'=>'Jobs' , 'middleware'=>'auth'] , function(){
+    Route::group(['prefix'=>'Jobs'] , function(){
         Route::get('index', 'JobController@index')->name('job.index');
         Route::get('add' , 'JobController@add')->name('job.add');
         Route::get('edit/{id}' , 'JobController@edit')->name('job.edit');
@@ -55,7 +55,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::post('update' , 'JobController@update')->name('job.update');
         Route::get('delete/{id}' , 'JobController@delete')->name('job.delete');
     });
-    Route::group(['middleware'=>'auth' , 'prefix'=>'course'] , function(){
+    Route::group(['prefix'=>'course'] , function(){
         Route::get('index' , 'CourseController@index')->name('getall');
         Route::get('add' , 'CourseController@add')->name('add.course');
         Route::post('store' , 'CourseController@store')->name('course.store');
@@ -63,10 +63,10 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::post('update' , 'CourseController@update')->name('course.update');
         Route::get('delete/{id}' ,'CourseController@delete')->name('course.delete');
     });
-    Route::group(['middleware'=>'auth' , 'prefix'=>'stat'] , function(){
+    Route::group(['prefix'=>'stat'] , function(){
         Route::get('index' , 'StatController@index')->name('getstat');
     });
 }); 
 
-//Route::get('/login' , 'LoginController@login')->name('login');
-//Route::post('/check' , 'LoginController@check')->name('login.admin');
+Route::get('/admin/login' , 'AdminLoginController@showLoginForm')->name('Admin.login');
+Route::post('/check' , 'AdminLoginController@save')->name('login.admin');

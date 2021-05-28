@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 class LoginController extends Controller
 {
+    
     public function login(){
         return view('backend.Auth.login');
 
