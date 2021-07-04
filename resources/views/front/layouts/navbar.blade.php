@@ -54,10 +54,20 @@
             @else
             <form class="form-inline my-2 my-lg-0 mr-auto">
         @endif
-            
-            
+       
+
+        @if(Auth::check())
+        <a href="{{route('Profile' , [Auth::user()->id])}}">   
+            <img 
+                class="rounded float-left" 
+                width="80" heigth="80" 
+                style="border-radius:50% !important" 
+                src="{{asset('images/Members').'/'.Auth::user()->photo}}">
+            </span>
+        </a>
+        @endif
             @if(Session::has('Useremail'))
-                <span id="avatar"></span>
+                <span>{{Auth::User()}}</span>
             @endif
         </form>
     </div>

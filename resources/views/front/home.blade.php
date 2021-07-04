@@ -225,6 +225,7 @@
 @include('front.layouts.foot')
 
 <script>
+    var flage = true;
     function Inter(limit){
         $('#RegistedRight').text(limit);
     }
@@ -238,7 +239,7 @@
         $('#sharedCourse').text(limit);
     }
     $(window).scroll(function(){
-        if($(window).scrollTop() > 800){
+        if($(window).scrollTop() > 800 && flage){
             var limit =$('#RegistedRight').text() ;
             var i = 1;
             
@@ -247,7 +248,7 @@
                     Inter(i++);
                 }
             } , 150);
-            
+           
             var limit2 =$('#CompleteProjects').text() ;
             var i2 = 1;
             setInterval(function(){
@@ -269,6 +270,7 @@
                     Inter4(i4++);
                 }
             } , 150);
+            flage = false;
         }
     });
 </script>

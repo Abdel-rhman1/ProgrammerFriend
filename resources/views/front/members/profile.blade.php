@@ -33,10 +33,14 @@
                     <i></i>
                     <p class="sectionhead" id="Notice"><i>Notices</i></p>
                 </div>
+               
+                @if (Auth::user()->id == $member->id)
+                    <p class="sectionhead" id="qrCode"><i>Profile QrCode</i></p>
+                @endif
             </div>
         </div>
     </div>
-    <div class="container" style="margin-top:30px">
+    <div class="container" style="margin-top:30px ; margin-bottom:30px">
         <div class="row PersonalInfo">
         <div class="col-sm-8">
         <div class="About_Youclass">
@@ -117,7 +121,13 @@
      <div id="Noticedetails">
         
      </div>
+     <div id="QrCode" class="text-center" style="margin:20 auto">
+        
+            {!!$code!!}
+        
+    </div>
 </div>
+@include('front.layouts.foot')
 <script>
     $(function(){
         var activeNow ;
@@ -136,15 +146,25 @@
         $('#PersonalInfohead').click(function(){
             
             $('#WorksContent').hide();
+            $('#QrCode').hide();
             $('.PersonalInfo').show();
+            
         });
         $('#WorksHead').click(function(){
             $('.PersonalInfo').hide();
+            $('#QrCode').hide();
             $('#WorksContent').show();
+        });
+        $('#qrCode').click(function(){
+            
+            $('#QrCode').show();
+            $('.PersonalInfo').hide();
+            $('#WorksContent').hide();
         });
         $('#PersonalInfohead').parent().css('backgroundColor' , '#f0f0f0');
         $('#WorksContent').hide();
-        $('#WorksContent').hide();
+        
+        $('#QrCode').hide();
        
     });
 </script>

@@ -37,10 +37,10 @@
                 <td>{{$Member->about_You}}</td>
                 <td>
                     <span>
-                        <a href="{{route('member.edit' , $Member->ID)}}" class="btn btn-success">update</a>
+                        <a href="{{route('member.edit' , $Member->id)}}" class="btn btn-success">update</a>
                     </span>
                     <span>
-                        <a href="{{route('member.delete' , $Member->ID)}}" class="btn btn-danger">Delete</a>
+                        <a href="{{route('member.delete' , $Member->id)}}" class="btn btn-danger">Delete</a>
                     </span>
                 </td>
             </tr>

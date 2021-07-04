@@ -19,7 +19,7 @@ Route::group(['prefix'=>'dashboard'], function(){
     Route::get('/' , function(){
 //        return view('');
         return view('backend.index');
-    })->name('admin.dashboard')->middleware('auth:member');
+    })->name('admin.dashboard')->middleware('auth');
 
     Route::group(['prefix'=>'Member'] , function(){
         Route::get('/' , 'MemberController@index')->name('get.members');

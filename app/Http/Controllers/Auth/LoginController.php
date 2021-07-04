@@ -55,13 +55,18 @@ class LoginController extends Controller
             return redirect()->back()->witherrors($val)->withInputs($res->all());
         }
         
-        if(Auth::guard('member')->attempt(['email'=> $res->email , 'password'=> $res->password])){
-          session(['Useremail' => Auth::guard('member')->user()->ID]);
+        if(Auth::attempt(['email'=> $res->email , 'password'=> $res->password])){
+    
+         
           return view('front.index');
         }
         else{
             return "Failed22";
             return back()->withInput($res->only('email'));
         }
+    }
+    public function username()
+    {
+        return 'email';
     }
 }

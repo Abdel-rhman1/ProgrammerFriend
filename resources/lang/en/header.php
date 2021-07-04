@@ -6,7 +6,7 @@
         'ser1' => 'Web Design',
         'ser2' => 'Web Hosting',
         'ser3' => 'Web development',
-        'about' => 'About Us',
+        'about' => 'customers service',
         'cont' => 'Contact Us',
         'lan1' => 'Arabic',
         'lan2' => 'English',

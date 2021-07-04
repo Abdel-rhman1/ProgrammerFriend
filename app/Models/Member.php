@@ -10,7 +10,7 @@ class Member extends Authenticatable
     use Notifiable;
     protected $table = 'members';
     protected $fillable = [
-        'ID' , 'Name' , 'email' , 'password', 'role' , 'about_You','photo',
+        'id' , 'Name' , 'email' , 'password', 'role' , 'about_You','photo',
      ];
     protected $hidden = [
         'created_at' , 'updated_at' , 'password'
