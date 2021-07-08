@@ -3,7 +3,7 @@
     All Jobs
 @endsection
 <div class="container" style="margin-top:50px;">
-
+   
     <div class="centerDiv">
         <h3 class="text-center">
             Search for your next job
@@ -38,23 +38,8 @@
                 </span>
             </div>
         @else
-        <div class="row">
-        @foreach ($jobs as $job)
-            <div class='col-sm-3'>
-                <div class="jobDiv">
-                    <p class="JobName float-left">{{$job->Name}}</p>
-                    <p class="float-right">Remote</p>
-                    <div class="UserJob">
-                        <a href="mailto:{{$job->Posteremail}}">
-                                {{$job->Posteremail}}
-                        </a>
-                    </div>
-                    <p class="JobDate float-left" style="color:green">{{$job->InValidUpTo}}</p>
-                    <p class="float-right">Easy To apply</p>
-                </div>
-            </div>
-        @endforeach
-        </div>
+        <livewire:posts/>
+       
         @endif
     </div>
 </div>
