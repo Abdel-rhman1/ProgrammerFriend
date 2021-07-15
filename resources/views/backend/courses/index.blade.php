@@ -49,6 +49,10 @@
                     <span>
                         <a href="{{route('course.delete' , $course->CID)}}"class="btn btn-danger btn btn-sm" onclick="return confirm('You Sure To delete This Item');">{{__('backend.delete')}}</a>
                     </span>
+                    <span>
+                        
+                    </span>
+                   
                 </td>
             </tr>
         @endforeach

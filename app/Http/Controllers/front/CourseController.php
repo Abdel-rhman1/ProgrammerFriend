@@ -4,6 +4,7 @@ namespace App\Http\Controllers\front;
 use App\Models\Course;
 use App\Models\Member;
 use App\Models\Categorie;
+use App\Models\Doc;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,8 @@ class CourseController extends Controller
     public function showCourseProfile($id){
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
-        return view('front.courses.courseShow' , compact('course'));
+        $contents = Doc::where('courseId' , $id)->get();
+        return view('front.courses.courseShow' , compact('course' , 'contents'));
     }
     public function showByprice(Request $res){
         $courses = Course::select('courses.ID as CID' , 'courses.taken as Ctoken', 'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
@@ -136,6 +138,46 @@ class CourseController extends Controller
             return redirect()->back()->with(['deleted'=>'This Course is deleted']);
         }else{
             return redirect()->back()->with(['error'=>'Error In Deleting This Course']);
+        }
+    }
+    public function addnewCOntent(Request $res){
+        $id = $res->id;
+        return view('front.courses.addContent' , compact('id'));
+    }
+    public function upload(Request $res){
+        $val = Validator::make($res->all() , [
+            'lessonNmber'=>'required|Numeric',
+            'lessonType'=>'required',
+            'Item'=>'required|File|mimes:mp3,mp4,c,pdf,exe',
+        ] , [
+            'lessonNmber.required'=>'The Lesson Number Is required',
+            'lessonNmber.Numeric'=>'The Lesson number be Integer',
+            'lessonType.required'=>'The Lesson Type Is Required',
+            'Item.required'=>'The Item is Required',
+            'Item.mimes'=>'This extension Is Invalid',
+        ]);
+        if($val->fails() ){
+            return redirect()->back()->withErrors($val)->withInput();
+        }else{
+            if($res->hasFile('Item')){ 
+                $filenameWithExt    = $res->file('Item')->getClientOriginalName();
+                $filename           = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension          = $res->file('Item')->getClientOriginalExtension();
+                
+                $fileNameToStore    = $filename.'_'.time().'.'.$extension;
+                $path               = $res->file('Item')->move('docs', $fileNameToStore); 
+                if($extension !== $res->lessonType && $res->lessonType!='other'){
+                    return  "Dismatching Extension";
+                }
+            }else{
+                return "Error No File";
+            }
+            Doc::create([
+                'title'=>$fileNameToStore,
+                'type'=>$extension,
+                'lessonNum'=>$res->lessonNmber,
+                'courseId'=>$res->id,
+            ]);
         }
     }
 }

@@ -60,6 +60,8 @@ Route::group(['prefix'=>'course' , 'namespace'=>'front' ,  'middleware'=>'auth']
     Route::post('/showbyName' , 'CourseController@showByName')->name('showByName');
     Route::get('/ShowCourseProfil/{id}' , 'CourseController@showCourseProfile')->name('course.profile');
     Route::get('/addNewCourse' , 'CourseController@addnewCourse')->name('addNewCourse');
+    Route::post('/addNewContent' , 'CourseController@addnewCOntent')->name('addNewContent');
+    Route::post('/uploadContent' , 'CourseController@upload')->name('upload');
 });
 Route::group(['prefix'=> 'Skills' , 'middleware'=>'auth'] , function(){
     
@@ -80,3 +82,5 @@ Route::post('/send-message' , 'TelegramController@Send');
 
 Route::post('/store-photo' , 'TelegramController@Storephoto');
 Route::get('/get_mess' , 'TelegramController@getUpdate');
+Route::get('/Send_Mail_view' , 'MailController@Show');
+Route::post('/send_Mail' , 'MailController@Send');

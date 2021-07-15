@@ -62,6 +62,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::get('edit/{id}' , 'CourseController@edit')->name('course.edit');
         Route::post('update' , 'CourseController@update')->name('course.update');
         Route::get('delete/{id}' ,'CourseController@delete')->name('course.delete');
+        Route::get('modify/{id}' ,  'CourseController@modify')->name('course.modify');
     });
     Route::group(['prefix'=>'stat'] , function(){
         Route::get('index' , 'StatController@index')->name('getstat');
@@ -70,3 +71,4 @@ Route::group(['prefix'=>'dashboard'], function(){
 
 Route::get('/admin/login' , 'AdminLoginController@showLoginForm')->name('Admin.login');
 Route::post('/check' , 'AdminLoginController@save')->name('login.admin');
+

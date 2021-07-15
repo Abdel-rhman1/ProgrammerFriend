@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Course;
+use App\Models\Doc;
 use App\Models\Member;
 use Validator;
 use Illuminate\Http\Request;
@@ -10,11 +11,14 @@ class CourseController extends Controller
 {
     
     public function index(){
-        $courses = Course::select('courses.ID as CID','courses.Name as CName' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
+        $courses = Course::select('courses.ID as CID','members.ID as MID','courses.Name as CName' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->get();
         return view('backend.courses.index' , compact('courses'));
     }
-
+    public function modify($id){
+        $Contents = Doc::where('courseId' , $id)->get();
+        return view('backend.courses.content' ,compact ('Contents'));
+    }
     public function add(){
         $members = Member::get();
         return view('backend.courses.add' , compact('members'));

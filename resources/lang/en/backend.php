@@ -9,7 +9,7 @@ return [
     'detailsPlace'=>'Type Course details',
     'Date'=>'Date',
     'Controllers'=>'Controllers',
-    'edtit' => 'edit',
+    'edit' => 'edit',
     'delete'=>'delete',
     'allcourse'=>'Courses',
     'addnewCourse'=>'Add New Course',
