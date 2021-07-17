@@ -60,6 +60,7 @@ Route::group(['prefix'=>'course' , 'namespace'=>'front' ,  'middleware'=>'auth']
     Route::post('/showbyName' , 'CourseController@showByName')->name('showByName');
     Route::get('/ShowCourseProfil/{id}' , 'CourseController@showCourseProfile')->name('course.profile');
     Route::get('/addNewCourse' , 'CourseController@addnewCourse')->name('addNewCourse');
+    Route::post('/store' , 'CourseController@store')->name('course.store.front');
     Route::post('/addNewContent' , 'CourseController@addnewCOntent')->name('addNewContent');
     Route::post('/uploadContent' , 'CourseController@upload')->name('upload');
     Route::get('/download/{file}' ,  'CourseController@download')->name('download');

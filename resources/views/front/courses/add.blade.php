@@ -22,7 +22,7 @@
                         {{Session::get('error')}}
                     </div>
                 @endif
-            <form action="{{route('course.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('course.store.front')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="NameInput">
@@ -46,22 +46,7 @@
                         {{$message}}
                     </div>
                 @enderror
-                <div class="form-group form-group-lg row">
-                    <label class="col-form-label col-sm-2" for="InstructorInput">
-                        
-                        {{__('backend.Instructor')}}
-                    </label>
-                    <select name="selectInstructor" class="form-control col-sm-8">
-                        @foreach ($members as $member)
-                            <option value="{{$member->ID}}">{{$member->Name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @error('selectInstructor')
-                <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
-                    {{$message}}
-                </div>
-                @enderror
+               
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="detailsInput">
                         {{__('backend.details')}}

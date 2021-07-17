@@ -10,8 +10,9 @@
             cluster: 'eu'
             });
     </script>
+    <script src="{{asset('js/pusherNotifications.js')}}"></script>
         <livewire:scripts />
-
+        
     </body>
 </html>
 

@@ -6,6 +6,7 @@ use App\Models\Doc;
 use App\Models\Member;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
 
 class CourseController extends Controller
 {
@@ -107,6 +108,7 @@ class CourseController extends Controller
         $cor = Course::findOrFail($id);
         $cor = Course::where('ID' , $id)->delete();
         if($cor){
+            File::delete($cor->photo);
             return redirect()->back()->with(['deleted'=>'This Course is deleted']);
         }else{
             return redirect()->back()->with(['error'=>'Error In Deleting This Course']);

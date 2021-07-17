@@ -7,6 +7,8 @@ use App\Models\Item;
 use App\Models\Like;
 use Validator;
 use Auth;
+use Illuminate\Support\Facades\File; 
+
 //use App\Http\Controllers\LikeController;
 class ItemController extends Controller
 {
@@ -167,6 +169,7 @@ class ItemController extends Controller
     public function delete($id){
         Item::findOrFail($id);
         $item = Item::where('ID' , $id)->delete();
+        File::delete($item->photo);
         if($item) return redirect()->back()->with(['deleted'=>'Item deleted']);
         else return redirect()->back()->with(['error'=>'Error In deleting Item']);
 

@@ -19,6 +19,7 @@
         "laravel/ui": "^2.0",
         "livewire/livewire": "^2.5",
         "paypal/rest-api-sdk-php": "*",
+        "pusher/pusher-php-server": "~4.0",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {

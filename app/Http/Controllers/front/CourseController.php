@@ -9,6 +9,8 @@ use Validator;
 use Illuminate\Support\Facades\Stoarge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Events\NewNotification;
+use Auth;
 class CourseController extends Controller
 {
     
@@ -22,6 +24,7 @@ class CourseController extends Controller
         $members = Member::get();
         return view('front.courses.add' , compact('members'));
     }
+
     public function showCourseProfile($id){
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
@@ -53,10 +56,11 @@ class CourseController extends Controller
         return view('backend.courses.add' , compact('members'));
     }
     public function store(Request $res){
+       
         $validat = Validator::make($res->all() , [
             'Name'=>'required',
             'photo'=>'required|image|mimes:png,jpg,jpeg,gif|max:2048',
-            'selectInstructor'=>'required',
+            //'selectInstructor'=>'required',
             'details'=>'required',
             'price'=>'required'
         ],[
@@ -65,7 +69,7 @@ class CourseController extends Controller
             'photo.image'=>'This file Must Be Image',
             'photo.mimes'=>'file exten must be png , jpg , jpeg , giv',
             'photo.max'=>'photo size must less than 2M',
-            'selectInstructor.required'=>'Instructor Name be is required',
+            //'selectInstructor.required'=>'Instructor Name be is required',
             'details.required'=>'details is required',
             'price.required'=>'Course Price Musnt Empty',
         ]);
@@ -77,11 +81,18 @@ class CourseController extends Controller
             $cor = Course::create([
                 'Name'=> $res->Name,
                 'photo'=>$imageName,
-                'InstructorID'=>$res->selectInstructor,
+                'InstructorID'=>Auth::id(),
                 'details'=>$res->details,
                 'Date'=> now(),
                 'Price'=>$res->price,
             ]);
+            $data = [
+                'user_id' => Auth::id(),
+               'user_name'  => Auth::user() -> Name,
+               'course' => $res ->Name,
+               
+            ];
+            event(new NewNotification($data));
             $res->photo->move('images/courses' , $imageName);
             if($cor)
                 return redirect()->back()->with(['Inserted'=>'New Course was added']);
