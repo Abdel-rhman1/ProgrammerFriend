@@ -12,7 +12,7 @@ class ItemController extends Controller
 {
     public function index($id){
         $Items = Item::where('CatID' , $id
-            )->paginate(10);
+            )->paginate(7);
         return view('backend.items.index' , compact('Items'));
     }
     public function addnewItem(){

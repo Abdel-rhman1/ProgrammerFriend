@@ -12,7 +12,7 @@ class CourseController extends Controller
     
     public function index(){
         $courses = Course::select('courses.ID as CID','members.ID as MID','courses.Name as CName' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
-        ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->get();
+        ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->paginate(10);
         return view('backend.courses.index' , compact('courses'));
     }
     public function modify($id){

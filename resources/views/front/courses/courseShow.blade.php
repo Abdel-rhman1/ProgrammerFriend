@@ -16,12 +16,30 @@
                 <div class="card-header">{{$course[0]->CName}} Content</div>
                 <div class="card-body">
                     @foreach ($contents as $content)
-                    <span class="alert alert-success">
-                        {{$content->type}} 
-                    </span>        
-                    <a href="{{asset('docs/' . $content->title)}}" target="_blank" width="100%">
-                        {{$content->title}}
-                    </a>
+                    
+                    @php
+                        $i = 1;
+                    @endphp
+                    <div class="row">
+                    <hr class="col-sm-3">
+                     @if ($i!==$content->lessonNum)
+                        <span class="col-sm-3">Lesson {{$content->lessonNum}}</span>
+                     @php $i = $content->lessonNum; @endphp
+                    @else
+                     
+                    @endif
+                    <hr class="col-sm-3"> 
+                    </div>
+                    <div class="row">
+                               
+                        <a class="col-sm-8" href="{{asset('docs/' . $content->title)}}" target="_blank" width="100%">
+                            <span class="alert alert-success">
+                                {{$content->type}} 
+                            </span> {{$content->title}}
+                        </a>
+                        <a class="col-sm-4 btn btn-success" href="{{route('download' ,  $content->title)}}">download</a>
+                        
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -51,15 +69,12 @@
         <a href="#" class="btn btn-success">
             Enroll This Course
         </a>
-     
             @if(Auth::user()->id===$course[0]->MID)
                 <form method="post" action={{route('addNewContent')}} style="margin-top:40px;">
                     @csrf
                     <input type="text" value="{{$course[0]->CID}}" name="id" hidden>
                     <input type="submit" value="add New Content" class="btn btn-success">
-
                 </form>
-                
             @endif
             
     </div>

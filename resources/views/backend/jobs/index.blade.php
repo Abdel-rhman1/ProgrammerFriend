@@ -26,7 +26,7 @@
     <th scope="col" class='text-center'>description</th>
     <th scope="col" class='text-center'>Skills</th>
     <th scope="col" class='text-center'>Posteremail</th>
-    <th scope="col" class='text-center'>Date</th>
+    
     <th scope="col" class="text-center">Up To </th>
     <th scope="col" class='text-center'>Controllers</th>
 </tr>
@@ -37,9 +37,17 @@
         <th scope="row">{{$job->ID}}</th>
         <td>{{$job->Name}}</td>
         <td scope="row">{{$job->description}}</td>
-        <td scope="row">{{$job->skills}}</td>
+        <td scope="row"><?php
+            $jobSkills = explode("_",$job->skills);
+        ?>
+        <div class="text-center">
+        @for ($i = 0; $i<count($jobSkills)-1;$i++)
+            <span class="btn btn-xs" style="font-size:13px; color:#fff;border:2px solid #fff;margin-bottom:3px">{{$jobSkills[$i]}}</span>
+        @endfor
+        </div>
+        </td>
         <td scope="row">{{$job->Posteremail}}</td>
-        <td scope="row">{{$job->Date}}</td>
+        
         <td scope="row">{{$job->InValidUpTo}}</td>
         <td>
             <span>
@@ -53,6 +61,9 @@
 @endforeach
 </tbody>
 </table>
+</div>
+<div class="text-center" style="margin:10px auto">
+    <span>{{$jobs->links()}}</span>
 </div>
 <a href="{{route('job.add')}}" class="btn btn-success">Add New Job</a>
 </div>

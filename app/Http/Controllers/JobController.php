@@ -9,7 +9,7 @@ class JobController extends Controller
 {
     
     public function index(){
-        $jobs = Job::get();
+        $jobs = Job::paginate(7);
         return view('backend.jobs.index' , compact('jobs'));
     }
     public function add(){

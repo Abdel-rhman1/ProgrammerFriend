@@ -38,10 +38,9 @@
     </div>
     <div class="col-sm-9 row" id="contentMember">
     @if (count($Members) == 0)
-         <div class="alert alert-danger text-center col-sm-12" style="height:50px">
+        <div class="alert alert-danger text-center col-sm-12" style="height:50px">
             <span>There Is No Members natches your Search</span>
-         </div>
-             
+        </div>
     @else
     <?php
          $NumItems  = count($Members);
@@ -61,7 +60,11 @@
                 <span class="RoleJob">{{$member->Jobname}}</span>
             </div>
         </div>
-        <span class="float-right Employee btn btn-success">Employee My</span>
+        
+        @if (Auth::user()->id !=$member->ID)
+            <span class="float-right Employee btn btn-success">Employee My</span>
+        @endif
+        
         <div class="Brief">
             {{$member->about_You}}
         </div>

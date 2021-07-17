@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Models\Categorie;
 use App\Models\Doc;
 use Validator;
+use Illuminate\Support\Facades\Stoarge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class CourseController extends Controller
@@ -24,7 +25,7 @@ class CourseController extends Controller
     public function showCourseProfile($id){
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
-        $contents = Doc::where('courseId' , $id)->get();
+        $contents = Doc::where('courseId' , $id)->orderBy('lessonNum' , 'ASC')->get();
         return view('front.courses.courseShow' , compact('course' , 'contents'));
     }
     public function showByprice(Request $res){
@@ -143,6 +144,9 @@ class CourseController extends Controller
     public function addnewCOntent(Request $res){
         $id = $res->id;
         return view('front.courses.addContent' , compact('id'));
+    }
+    public function download($file){
+        return response()->download(public_path('docs/').'/'.$file);
     }
     public function upload(Request $res){
         $val = Validator::make($res->all() , [

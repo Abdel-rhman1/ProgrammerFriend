@@ -245,3 +245,14 @@ a:hover{
     margin-right:10px;
     cursor: pointer;
 }
+
+/* Start Services Page */
+.Service{
+    
+    height: 40px;
+    border:2px solid #4e3d3d;
+    padding:2px;
+    padding-top:5px;
+    cursor:pointer
+}
+/* End Services Page*/

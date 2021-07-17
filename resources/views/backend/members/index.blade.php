@@ -19,7 +19,7 @@
     <table class="table table-striped table-dark">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            
             <th scope="col">Name</th>
             <th scope="col">email</th>
             <th scope="col">Role</th>
@@ -30,7 +30,7 @@
         <tbody>
         @foreach($Memebers as $Member)
             <tr>
-                <th scope="row">{{$Member->ID}}</th>
+               
                 <td>{{$Member->Name}}</td>
                 <td>{{$Member->email}}</td>
                 <td>{{$Member->role}}</td>

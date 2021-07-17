@@ -9,23 +9,48 @@
     <section class="Ser">
         <h1 class='text-center' style="margin-top:30px">Our Services</h1>
         <div class="row">
-            <div class='col-sm-3'> 
-                <img src='{{asset('images/project.jpg')}}' width="200" height="200" style="border-radius:50%">
-                <p class='text-center' style="color:#888 ; font-size:140%">Show Program Projects</p>
+            <div class='col-sm-3'>
+                <div class="text-center">                 
+                    <h3 class='Projects Service' style="color:#888 ; font-size:140%">Show Program Projects</h3>
+                </div>
             </div>
             <div class="col-sm-3">
-            
-                <img src='{{asset('images/Profile.jpeg')}}' width="200" height="200" style="border-radius:50%">
-                <p style="color:#888 ; font-size:140%">Show Program Profiles</p>
+                <div class="text-center"> 
+                <h3 class="Profile Service"style="color:#888 ; font-size:140%">Show Programmers</h3>
+                </div>
             </div>
             <div class="col-sm-3">
+                <div class="text-center"> 
+                <h3 class="Course Service"style="color:#888 ; font-size:140%">Show courses</h3>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="text-center"> 
+                <h3 class="Job Service"style="color:#888 ; font-size:140%">Hiring Programmers </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="ProjectsContent">
+                    
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ProfileContent">
 
-                <img src='{{asset('images/courses.jpeg')}}' width="200" height="200" style="border-radius:50%">
-                <p style="color:#888 ; font-size:140%">Show Programmer courses</p>
+                </div>
             </div>
             <div class="col-sm-3">
-                <img src='{{asset('images/hiring.jpeg')}}' width="200" height="200" style="border-radius:50%">
-                <p style="color:#888 ; font-size:140%">Hiring Programmers </p>
+                <div class="CourseContent">
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="JobContent">
+
+                </div>
+
             </div>
         </div>
     </section>
