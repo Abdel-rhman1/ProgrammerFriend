@@ -5,55 +5,122 @@
 <div class="cars">
     @include('front.layouts.cars')
 </div>
+
+<div class="outerBox">
+    <h1 class='text-center' style="margin-top:0px">Our Services</h1>
+</div>
 <div class="container">
-    <section class="Ser">
-        <h1 class='text-center' style="margin-top:30px">Our Services</h1>
-        <div class="row">
-            <div class='col-sm-3'>
-                <div class="text-center">                 
-                    <h3 class='Projects Service' style="color:#888 ; font-size:140%">Show Program Projects</h3>
+    <div class="Our-services">
+    
+        <div class="container">
+          <div class="Our-services-Head">
+              <div class="row">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="Active2 Service text-center" id="projectManagment">
+                      <p >Projects Management</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="Service text-center" id="BusinessAnalysis">
+                      <p>Business Analysis</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="Service text-center " id="ManagementSkill">
+                      <p>Management Skills</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="Service text-center " id="Custmized">
+                    <p>Communication</p>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          <div class="Our-services-Body projectManagmentContent text-center">
+            <span class="alert alert-danger">This Data IS Not Avilable Now</span>
+              <div class="row" hidden>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <p>
+                    Your organization work usually lasts for MORE than planned?
+                    Your projects usually end up in a need for EXTRA COST than budgeted?
+                    Your Teams used to produce results of LESS QUALITY than agreed upon?
+                  </p>
+                  <p>
+                    Applying Management will help organization meet its strategic goals in
+                    a clearer way and will boost your teams efficiency.
+                  </p>
+                  <p>
+                    Project Management will help your organization meet its solution for
+                    your organization challenges
+                  </p>
+                  <p>
+                    Project Management is not only for  construction Management and IT specialists
+                    it is a methodology that all Businesses can apply and benefit from
+                  </p>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="text-center"> 
-                <h3 class="Profile Service"style="color:#888 ; font-size:140%">Show Programmers</h3>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <h3 class="ServiceHeading">Our list of PM courses Include:</h3>
+                  <div class="row">
+                  <div class="col-sm-6 col-xs-6">
+      
+                  <ul type="none">
+                    <li>
+                      <i class="fa fa-play"  aria-hidden="true"></i>
+                      Project Management Fundamentals
+                    </li>
+      
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Project Management in Practice
+                    </li>
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      PM Certificates Preparation
+                    </li>
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Project Management for Executives
+                    </li>
+                  </ul>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="text-center"> 
-                <h3 class="Course Service"style="color:#888 ; font-size:140%">Show courses</h3>
+                <div class="col-sm-6 col-xs-6">
+                  <ul type="none">
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Scheduling Techniques
+                    </li>
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Risk Management Fundamentals
+                    </li>
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Managing programs
+                    </li>
+      
+                    <li>
+                      <i class="fa fa-play" aria-hidden="true"></i>
+                      Setting Up PMO
+                    </li>
+                  </ul>
                 </div>
+              </div>
             </div>
-            <div class="col-sm-3">
-                <div class="text-center"> 
-                <h3 class="Job Service"style="color:#888 ; font-size:140%">Hiring Programmers </h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="ProjectsContent">
-                    
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="ProfileContent">
-
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="CourseContent">
-
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="JobContent">
-
-                </div>
-
-            </div>
-        </div>
-    </section>
+          </div>
+      </div>
+      <div class="Our-services-Body BusinessAnalysisContent text-center hiddenclass">
+          <span class="alert alert-danger">This Data IS not Avilable Now</span>
+      </div>
+      
+      <div class="Our-services-Body ManagementSkillContent text-center hiddenclass">
+          <span class="alert alert-danger">This Data IS not Avilable Now</span>
+      </div>
+      <div class="Our-services-Body CustmizedContent text-center hiddenclass">
+          <span class="alert alert-danger">This Data IS not Avilable Now</span>
+      </div>
+      </div>
+      </div>
     
 
     <h1 class="text-center">
@@ -109,143 +176,12 @@
 
 
     
-      <h1 class="text-center">
-        The Last Jobs
-    </h1>
-    <div id="carouselExampleControl2" class="carousel slide"  data-interval="false">
-        <div class="carousel-inner">
-            <?php  
-                $F = 0;
-                $S = 0;
-                $T = 0;
-                ?>
-          <div class="carousel-item active">
-                <div class="row">
-                    @while ($F++ < 4)
-                        <div class="col-sm-3" style="cursor: pointer">
-                            <div class="text-center">
-                                @if($jobs[$F]!= null)
-                                  <div>
-                                        <p>{{$jobs[$F]->Name}}</p>
-                                  </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endwhile
-                </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-                @while ($S++ < 4)
-                <div class="col-sm-3">
-                    <div class="col-sm-3" style="cursor: pointer">
-                        <div class="text-center">
-                            @if($jobs[$S+4] != null)
-                                <div>
-                                    <p>{{$jobs[$S+4]->Name}}</p>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @endwhile
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControl2" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControl2" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      
+    
+      
+    
+    
 
-    
-    
-      <h1 class="text-center">
-        The Last Courses
-    </h1>
-    <div id="carouselExampleControl2" class="carousel slide"  data-interval="false">
-        <div class="carousel-inner">
-            <?php  
-                $F = 0;
-                $S = 0;
-                $T = 0;
-                ?>
-          <div class="carousel-item active">
-                <div class="row">
-                    @while ($F++ < 4)
-                        <div class="col-sm-3" style="cursor: pointer">
-                            <div class="text-center">
-                                @if($courses[$F]!= null)
-                                  <div>
-                                        <p>{{$courses[$F]->Name}}</p>
-                                  </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endwhile
-                </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-                @while ($S++ < 4)
-                <div class="col-sm-3">
-                    <div class="col-sm-3" style="cursor: pointer">
-                        <div class="text-center">
-                            @if($courses[$S+4] != null)
-                                <div>
-                                    <p>{{$courses[$S+4]->Name}}</p>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @endwhile
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControl2" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControl2" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    
-    
-    <section class="benefit">
-        <h1 class="text-center">Our Stat</h1>
-        <div class="row">
-            <div class="col-sm-3">
-                <p>Registered User</p>
-                <p id="RegistedRight">{{$memberCount}}</p>
-            </div>
-            
-            <div class="col-sm-3">
-                <p>Projects</p>
-                <p id="CompleteProjects">{{$ProjectCount}}</p>
-            </div>
-            <div class="col-sm-3">
-                <p>Jobs</p>
-                <p id="SharedJobs" style="color:red ; font-size:120%">
-                    {{$JobsCount}}
-                </p>
-            </div>
-            <div class="col-sm-3">
-                <p>
-                    Shared Course
-                </p>
-                <p id="sharedCourse">
-                    {{$coursesNumber}}
-                </p>
-            </div>
-        </div>
-    </section>
 </div>
 @include('front.layouts.foot')
 

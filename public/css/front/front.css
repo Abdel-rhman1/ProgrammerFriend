@@ -1,5 +1,5 @@
 body{
-    background: #f0f0f0;
+    background: #fff;
 }
 .allProject{
     width:216px;
@@ -247,12 +247,70 @@ a:hover{
 }
 
 /* Start Services Page */
-.Service{
+
+.Our-services{
+    min-height: 300px!important;
+    max-height: 1400px!important;
+    height: auto;
+  }
+  .Our-services .InnerClass{
+    background-color:#eee;
+    height: 180px !important;
+    background-size: cover;
+  }
+  .Our-services .Our-services-Head .Service{
+      background-color:#eee;
+      margin-top: -40px;
+      height:60px;
+      padding:5px;
+      cursor: pointer;
+      margin-bottom: 50px;
+  }
+  
+  .Our-services .Our-services-Head .Service p{
+      color:hsl(195deg 77% 22%);
+  }
+  .Our-services-Body .ServiceHeading{
+    color:hsl(19deg 87% 59%);
+    margin-left: 25px;
+  }
+  .Our-services-Body p{
+    font-size: 15px;
+  }
+  .Our-services-Body ul li{
+    font-size: 13px;
+    line-height: 3.1;
+    color:hsl(196deg 74% 23%);
+    cursor: pointer;
+  }
+  .Our-services-Body ul li i{
+    font-size: 10px;
+  }
+  .Active2{
+      background-color:  #fff!important;
+  }
+  .Active2 p{
+    color:hsl(22deg 89% 55%) !important;
+  }
+  .Our-services .Our-services-Body{
+    margin-top:30px;
+    height: 200px;
+  }
+  
+.Ser{
+    margin-top: -50px;
+}
+.outerBox{
+    background: #eee;
+    height: 120px;
     
-    height: 40px;
-    border:2px solid #4e3d3d;
-    padding:2px;
-    padding-top:5px;
+}
+.Service{
+    height: 60px;
+    padding:10px;
+    padding-top:20px;
+   
     cursor:pointer
 }
+
 /* End Services Page*/
