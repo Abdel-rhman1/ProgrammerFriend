@@ -106,9 +106,12 @@ class CourseController extends Controller
     }
     public function delete($id){
         $cor = Course::findOrFail($id);
+        //return asset('/images/courses/').'/'.$cor->photo;
+        File::delete(public_path('/images/courses/').'/'.$cor->photo);
         $cor = Course::where('ID' , $id)->delete();
         if($cor){
-            File::delete(asset('images/courses/').$cor->photo);
+            
+            //File::delete(public_path('upload/bio.png'));
             return redirect()->back()->with(['deleted'=>'This Course is deleted']);
         }else{
             return redirect()->back()->with(['error'=>'Error In Deleting This Course']);

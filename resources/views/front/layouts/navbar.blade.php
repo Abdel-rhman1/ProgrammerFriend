@@ -74,7 +74,7 @@
             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="type:none" style="overflow-y:scroll">
                 <li class="dropdown-menu-header">
                     <h6 class="dropdown-header m-0 text-center">
-                        <span class="grey darken-2 text-center"> الرسائل</span>
+                        <span class="grey darken-2 text-center">الرسائل</span>
                     </h6>
                 </li>
                 <li class="scrollable-container ps-container ps-active-y media-list w-100">

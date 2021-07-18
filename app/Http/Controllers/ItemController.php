@@ -169,7 +169,8 @@ class ItemController extends Controller
     public function delete($id){
         Item::findOrFail($id);
         $item = Item::where('ID' , $id)->delete();
-        File::delete($item->photo);
+       
+        File::delete(public_path('/images/Items/').'/'.$Item->photo);
         if($item) return redirect()->back()->with(['deleted'=>'Item deleted']);
         else return redirect()->back()->with(['error'=>'Error In deleting Item']);
 
