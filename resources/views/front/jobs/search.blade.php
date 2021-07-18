@@ -8,6 +8,8 @@
 @else
 <div class="row">
 @foreach ($jobs as $job)
+
+ <a  href="{{route('JobDetails' , $job->id)}}">
     <div class='col-sm-3'>
         <div class="jobDiv">
             <p class="JobName float-left">{{$job->Name}}</p>
@@ -21,6 +23,7 @@
             <p class="float-right">Easy To apply</p>
         </div>
     </div>
+</a>
 @endforeach
 @endif
 </div>

@@ -7,7 +7,7 @@
 </div>
 
 <div class="outerBox">
-    <h1 class='text-center' style="margin-top:0px">Our Services</h1>
+    <h1 class='text-center' style="padding-top: 17px;">Our Services</h1>
 </div>
 <div class="container">
     <div class="Our-services">

@@ -5,12 +5,11 @@
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
             Pusher.logToConsole = true;
-
             var pusher = new Pusher('19fb987c92da512c3246', {
-            cluster: 'eu'
+                cluster: 'eu'
             });
     </script>
-    <script src="{{asset('js/pusherNotifications.js')}}"></script>
+
         <livewire:scripts />
         
     </body>

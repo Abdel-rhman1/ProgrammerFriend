@@ -18,6 +18,11 @@ class JobController extends Controller
         ->orwhere('skills' , 'like' , '%' . $Name . '%')->get();
         return view('front.jobs.search' , compact('jobs'));
     }
+    public function Details($id){
+        $job = Job::findOrFail($id);
+
+        return view('front.jobs.profile' , compact('job'));
+    }
     public function add(){
         return view('backend.jobs.add');
     }

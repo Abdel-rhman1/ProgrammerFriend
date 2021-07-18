@@ -130,7 +130,8 @@ class MemberController extends Controller
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
         return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
     }
-    public function getByCountry ($CountryID){
+    public function getbyCountry ($CountryID){
+        //return "Hello";
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();

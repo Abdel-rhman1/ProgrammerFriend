@@ -74,6 +74,7 @@ Route::group(['prefix'=> 'Skills' , 'middleware'=>'auth'] , function(){
 Route::group(['prefix'=>'jobs', 'namespace'=>'front' , 'middleware'=>'auth'] , function(){
     Route::get('/index' , 'JobController@index')->name('index.job');
     Route::post('searchByFirst' ,'JobController@searchByFirst')->name('SearchByFirst');
+    Route::get('jobDetails/{id}' , 'JobController@Details')->name('JobDetails');
 });
 Route::get('aboutus' , 'HomeController@aboutus')->name('aboutus');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\front;
 use App\Models\Course;
 use App\Models\Member;
+use App\Models\Notification;
 use App\Models\Categorie;
 use App\Models\Doc;
 use Validator;
@@ -86,13 +87,21 @@ class CourseController extends Controller
                 'Date'=> now(),
                 'Price'=>$res->price,
             ]);
+            
             $data = [
                 'user_id' => Auth::id(),
                'user_name'  => Auth::user() -> Name,
                'course' => $res ->Name,
                
             ];
+            Notification::create([
+                'user_id'=>Auth::user()->id,
+                'notifi_content'=>'Adding New Course',
+                'course_id'=>$cor->id,
+                'created_at'=>now(),
+            ]);
             event(new NewNotification($data));
+            
             $res->photo->move('images/courses' , $imageName);
             if($cor)
                 return redirect()->back()->with(['Inserted'=>'New Course was added']);

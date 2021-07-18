@@ -108,7 +108,7 @@ class CourseController extends Controller
         $cor = Course::findOrFail($id);
         $cor = Course::where('ID' , $id)->delete();
         if($cor){
-            File::delete($cor->photo);
+            File::delete(asset('images/courses/').$cor->photo);
             return redirect()->back()->with(['deleted'=>'This Course is deleted']);
         }else{
             return redirect()->back()->with(['error'=>'Error In Deleting This Course']);

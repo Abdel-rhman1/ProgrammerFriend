@@ -1,6 +1,8 @@
 <div>
     <div class="row">
         @foreach ($jobs as $job)
+        
+        
             <div class='col-sm-3'>
                 <div class="jobDiv">
                     <p class="JobName float-left">{{$job->Name}}</p>
@@ -11,7 +13,9 @@
                         </a>
                     </div>
                     <p class="JobDate float-left" style="color:green">{{$job->InValidUpTo}}</p>
-                    <p class="float-right">Easy To apply</p>
+                    <a href="{{route('JobDetails' , $job->ID)}}">
+                        <p class="float-right">Easy To apply</p>
+                    </a>
                 </div>
             </div>
         @endforeach

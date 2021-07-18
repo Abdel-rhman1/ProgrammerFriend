@@ -314,3 +314,33 @@ a:hover{
 }
 
 /* End Services Page*/
+
+
+/*Job */
+.FilterHead{
+    text-align: center;
+}
+.FilterHead p {
+    height: 40px;
+    width:100px;
+    padding:8px;
+    border-radius: 1.59rem;
+    border:1px solid rgb(59, 58, 58)
+}
+.JobFilters .DatePostList{
+     height: auto;
+     width:100%;
+     background-color: #000;
+}
+/*Job*/
+/*Start Notifications*/
+.dropdown-menu-media{
+    width:300px !important;
+
+    height: 200px !important;
+    overflow-y: auto !important;
+}
+.media-body{
+    padding:5px;
+}
+/*End Notifications*/

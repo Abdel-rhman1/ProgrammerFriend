@@ -64,25 +64,34 @@
         <li class="dropdown dropdown-notification nav-item  dropdown-notifications">
             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                 <i class="fa fa-bell"> </i>
+                @php 
+                    $Notifs=\App\Http\Controllers\HomeController::getNotifications();
+                @endphp
                 <span
                     class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow   notif-count"
-                    data-count="9">9</span>
+                    data-count="9">{{$Notifs->count()}}</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="type:none">
+            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="type:none" style="overflow-y:scroll">
                 <li class="dropdown-menu-header">
                     <h6 class="dropdown-header m-0 text-center">
                         <span class="grey darken-2 text-center"> الرسائل</span>
                     </h6>
                 </li>
                 <li class="scrollable-container ps-container ps-active-y media-list w-100">
-                    <a href="">
-                        <div class="media">
-                            <div class="media-body">
-                                <h6 class="media-heading text-right ">عنوان الاشعار </h6>
-                                <p class="notification-text font-small-3 text-muted text-right"> نص الاشعار</p>
+                    
+                   
+                    @foreach ($Notifs as $Notif)
+                        
+                    
+                    <a href="{{route('course.profile' , $Notif->CID)}}">
+                        <div class="media" >
+                            <div class="media-body" style="margin-bottom: -40px;">
+                                
+                                <p class="notification-text font-small-3 text-muted"> {{$Notif->MName}}  Was Added New Course </p>
                                 <small style="direction: ltr;">
-                                    <p class=" text-muted text-right"
-                                          style="direction: ltr;"> 20-05-2020 - 06:00 pm
+                                    <p class=" text-muted text-center"
+                                          style="direction: ltr;"> 
+                                          {{$Notif->CNO}}
                                     </p>
                                     <br>
 
@@ -90,7 +99,8 @@
                             </div>
                         </div>
                     </a>
-
+                    <hr>
+                    @endforeach
                 </li>
                 <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"
                                                     href=""> جميع الاشعارات </a>
