@@ -8,7 +8,7 @@ use App\Models\Notification;
 class NotificationLiv extends Component
 {
     use WithPagination;
-    public $perPage = 1;
+    public $perPage = 5;
     public function loadMore(){
         $this->perPage+=5;
     }

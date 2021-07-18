@@ -103,8 +103,14 @@ class CourseController extends Controller
             event(new NewNotification($data));
             
             $res->photo->move('images/courses' , $imageName);
-            if($cor)
+            if($cor){
+                $data = [
+                    'name'=>Auth::user() -> Name,
+                    'course_name'=> $res ->Name,
+                ];
+                app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com');
                 return redirect()->back()->with(['Inserted'=>'New Course was added']);
+            }
             else
                 return redirect()->back()->with(['error'=>'Error In adding This Course']);
         }

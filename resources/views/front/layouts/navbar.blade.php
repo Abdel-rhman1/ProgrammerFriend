@@ -55,11 +55,6 @@
             @else
             <form class="form-inline my-2 my-lg-0 mr-auto">
         @endif
-       
-
-            
-
-
         @auth
         @php 
             $Notifs=\App\Http\Controllers\HomeController::getNotifications();

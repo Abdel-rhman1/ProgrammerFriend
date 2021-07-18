@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyEmial extends Mailable
+class SignupMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,11 @@ class NotifyEmial extends Mailable
      *
      * @return void
      */
-    
-    public function __construct()
+    public $title ;
+    public function __construct($data , $title)
     {
+        $this->signup_mail_data = $data;
+        $this->title = $title;
     }
 
     /**
@@ -28,6 +30,7 @@ class NotifyEmial extends Mailable
      */
     public function build()
     {
-        return $this->view('Emails.Notify');
+        return $this->from('from_email@gmail.com', 'WithYou.com')->subject($this->title)
+        ->view('mail.signup-email', ['mail_data' => $this->signup_mail_data]);
     }
 }
