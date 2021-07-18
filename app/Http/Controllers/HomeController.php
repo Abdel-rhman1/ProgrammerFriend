@@ -31,7 +31,7 @@ class HomeController extends Controller
         $JobsCount = Job::count();
         $coursesNumber = Course::count();
         
-        return view('front.home'  , compact('Items' , 'jobs' , 'courses' , 'memberCount' , 'ProjectCount' , 'JobsCount' , 'coursesNumber' , 'Notifs'));
+        return view('front.home'  , compact('Items' , 'jobs' , 'courses' , 'memberCount' , 'ProjectCount' , 'JobsCount' , 'coursesNumber'));
     }
     public static function getNotifications(){
         $Notifs = Notification::select('notifications.id as NID' , 'notifications.notifi_content' , 'courses.Name as CName' , 'courses.ID as CID' , 'members.Name as MName' , 'notifications.created_at as CNO' )

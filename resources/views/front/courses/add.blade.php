@@ -87,18 +87,18 @@
     var notificationsWrapper = $('.dropdown-notifications');
    
     var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+   
     var notificationsCountElem = notificationsToggle.find('span[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
     var notifications = notificationsWrapper.find('li.scrollable-container');
     // Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe('new-notification');
     // Bind a function to a Event (the full Laravel class)
-    console.log('Hello');
     channel.bind('App\\Events\\NewNotification', function (data) {
         
         var existingNotifications = notifications.html();
-        
-        var newNotificationHtml = `<a href="`+{{}}+`"><div class="media-body"> <p class="notification-text font-small-3 text-muted">` + data.user_name + " Was Added New Course"+ `</p><small style="direction: ltr;"><p class="media-meta text-muted text-center" style="direction: ltr;">` + data.date + data.time + `</p> </small></div></div></a><hr>`;
+       
+        var newNotificationHtml = `<a href="`+data.user_id+`"><div class="media-body"> <p class="notification-text font-small-3 text-muted">` + data.user_name + " Was Added New Course"+ `</p><small style="direction: ltr;"><p class="media-meta text-muted text-center" style="direction: ltr;">` + data.date + data.time + `</p> </small></div></div></a><hr>`;
         notifications.html(newNotificationHtml + existingNotifications);
         notificationsCount += 1;
         
@@ -106,4 +106,7 @@
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     });
+
+    
+
 </script>

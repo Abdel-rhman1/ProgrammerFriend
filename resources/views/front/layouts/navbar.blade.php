@@ -61,15 +61,17 @@
 
 
         @auth
+        @php 
+            $Notifs=\App\Http\Controllers\HomeController::getNotifications();
+
+        @endphp
         <li class="dropdown dropdown-notification nav-item  dropdown-notifications">
             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                 <i class="fa fa-bell"> </i>
-                @php 
-                    $Notifs=\App\Http\Controllers\HomeController::getNotifications();
-                @endphp
+                
                 <span
                     class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow   notif-count"
-                    data-count="9">{{$Notifs->count()}}</span>
+                    data-count="{{$Notifs->count()}}">{{$Notifs->count()}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="type:none" style="overflow-y:scroll">
                 <li class="dropdown-menu-header">
