@@ -40,6 +40,8 @@ Route::group(['prefix'=>'prog' , 'middleware'=>'auth:web'] , function(){
 }); 
 
 Auth::routes();
+Route::post('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::group(['prefix'=>'Items' , 'middleware'=>'auth'] , function(){
     Route::get('index/{id}/{Name?}' , 'ItemController@getByCat')->name('getById');

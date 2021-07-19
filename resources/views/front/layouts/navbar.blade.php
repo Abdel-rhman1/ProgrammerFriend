@@ -89,14 +89,28 @@
 
             
         @if(Auth::check())
-        <a href="{{route('Profile' , [Auth::user()->id])}}">   
-            <img 
+
+        <li class="nav-item dropdown" type="none">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img 
                 class="rounded float-left" 
                 width="80" heigth="80" 
                 style="border-radius:50% !important" 
                 src="{{asset('images/Members').'/'.Auth::user()->photo}}">
-            </span>
-        </a>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('Profile' , [Auth::user()->id])}}">{{__('Profile')}}</a>
+                <a class="dropdown-item" href="{{route('getById' , [2  , ''])}}">{{__('Setting')}}</a>
+                <div class="dropdown-divider"></div>
+                <form class="" method="POST" action="{{route('logout')}}">
+                    <input class="dropdown-item" type="submit" Value="{{__('logout')}}"
+                     >
+                </form>
+            </div>
+        </li>
+
+        
+        
         @endif
             @if(Session::has('Useremail'))
                 <span>{{Auth::User()}}</span>
