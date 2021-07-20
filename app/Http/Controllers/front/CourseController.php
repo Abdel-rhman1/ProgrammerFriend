@@ -30,6 +30,14 @@ class CourseController extends Controller
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
         $contents = Doc::where('courseId' , $id)->orderBy('lessonNum' , 'ASC')->get();
+
+        return view('front.courses.courseShow' , compact('course' , 'contents'));
+    }
+    public function showCoursefromNotify($id , $contentId){
+        $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
+        ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
+        $contents = Doc::where('courseId' , $id)->orderBy('lessonNum' , 'ASC')->get();
+        Notification::where('id' , $contentId)->update(['viewd'=>1]);
         return view('front.courses.courseShow' , compact('course' , 'contents'));
     }
     public function showByprice(Request $res){
@@ -175,6 +183,7 @@ class CourseController extends Controller
         return response()->download(public_path('docs/').'/'.$file);
     }
     public function upload(Request $res){
+        
         $val = Validator::make($res->all() , [
             'lessonNmber'=>'required|Numeric',
             'lessonType'=>'required',
@@ -186,9 +195,12 @@ class CourseController extends Controller
             'Item.required'=>'The Item is Required',
             'Item.mimes'=>'This extension Is Invalid',
         ]);
-        if($val->fails() ){
+        if($val->fails()){
+           
+            
             return redirect()->back()->withErrors($val)->withInput();
         }else{
+            return "No Error";
             if($res->hasFile('Item')){ 
                 $filenameWithExt    = $res->file('Item')->getClientOriginalName();
                 $filename           = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -208,6 +220,8 @@ class CourseController extends Controller
                 'lessonNum'=>$res->lessonNmber,
                 'courseId'=>$res->id,
             ]);
+           
         }
+
     }
 }

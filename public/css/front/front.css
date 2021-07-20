@@ -343,4 +343,10 @@ a:hover{
 .media-body{
     padding:5px;
 }
+.notificationBody{
+    padding-bottom: 5px;
+}
+.notificationBody:hover{
+    background-color: #eee;
+}
 /*End Notifications*/

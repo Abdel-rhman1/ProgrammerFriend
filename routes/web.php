@@ -61,6 +61,7 @@ Route::group(['prefix'=>'course' , 'namespace'=>'front' ,  'middleware'=>'auth']
     Route::post('/showbyCat' , 'CourseController@showByCat')->name('showByCat');
     Route::post('/showbyName' , 'CourseController@showByName')->name('showByName');
     Route::get('/ShowCourseProfil/{id}' , 'CourseController@showCourseProfile')->name('course.profile');
+    Route::get('/ShowCourseProfil/{cId}/{nId}' , 'CourseController@showCoursefromNotify')->name('course.profile2');
     Route::get('/addNewCourse' , 'CourseController@addnewCourse')->name('addNewCourse');
     Route::post('/store' , 'CourseController@store')->name('course.store.front');
     Route::post('/addNewContent' , 'CourseController@addnewCOntent')->name('addNewContent');

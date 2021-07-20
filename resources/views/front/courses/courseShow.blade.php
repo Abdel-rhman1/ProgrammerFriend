@@ -15,25 +15,27 @@
             <div class="card">
                 <div class="card-header">{{$course[0]->CName}} Content</div>
                 <div class="card-body">
+                    @php
+                        $i = 0;
+                    @endphp
                     @foreach ($contents as $content)
                     
-                    @php
-                        $i = 1;
-                    @endphp
                     <div class="row">
-                    <hr class="col-sm-3">
-                     @if ($i!==$content->lessonNum)
-                        <span class="col-sm-3">Lesson {{$content->lessonNum}}</span>
+                     @if ($i!=$content->lessonNum)
+                        <hr class="col-sm-3">
+                            <span class="col-sm-3">Lesson {{$content->lessonNum}}</span>
+                        <hr class="col-sm-3"> 
                      @php $i = $content->lessonNum; @endphp
                     @else
-                     
+                        <span style="display: block;margin-bottom:10px"></span>
+                        @php $i = $content->lessonNum; @endphp
                     @endif
-                    <hr class="col-sm-3"> 
+                   
                     </div>
                     <div class="row">
                                
                         <a class="col-sm-8" href="{{asset('docs/' . $content->title)}}" target="_blank" width="100%">
-                            <span class="alert alert-success">
+                            <span class="btn btn-primary">
                                 {{$content->type}} 
                             </span> {{$content->title}}
                         </a>
@@ -65,18 +67,25 @@
         <span class="alert alert-success">{{$course[0]->CPrice}} Dollar</span> 
     @endif
     </div>
-    <div class="text-center" style="width:100% ; margin-top:40px; margin-bottom:40px">
-        <a href="#" class="btn btn-success">
-            Enroll This Course
-        </a>
+    <div class="text-center row" style="margin-top:40px; margin-bottom:40px">
+        <div class="col-sm-2 offset-sm-3">
+            <a href="#" class="btn btn-success">
+                Enroll This Course
+            </a>
+        </div>
             @if(Auth::user()->id===$course[0]->MID)
-                <form method="post" action={{route('addNewContent')}} style="margin-top:40px;">
+                <form method="post" action={{route('addNewContent')}} class="col-sm-3">
                     @csrf
                     <input type="text" value="{{$course[0]->CID}}" name="id" hidden>
                     <input type="submit" value="add New Content" class="btn btn-success">
                 </form>
+                <div class="col-sm-2">
+                    <a href="#" class="btn btn-success">
+                        Create Cobon
+                    </a>
+                </div>
             @endif
             
-    </div>
+        </div>
 </div>
 @include('front.layouts.foot')

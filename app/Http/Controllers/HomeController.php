@@ -36,7 +36,7 @@ class HomeController extends Controller
     public static function getNotifications(){
         $Notifs = Notification::select('notifications.id as NID' , 'notifications.notifi_content' , 'courses.Name as CName' , 'courses.ID as CID' , 'members.Name as MName' , 'notifications.created_at as CNO' )
         ->join('members' , 'members.ID' , '=' , 'notifications.user_id')
-        ->join('courses' , 'courses.ID' , '=' ,'notifications.course_id')->orderBy('notifications.created_at' , 'DESC')->get();
+        ->join('courses' , 'courses.ID' , '=' ,'notifications.course_id')->where('viewd' , 0)->orderBy('notifications.created_at' , 'DESC')->get();
         return $Notifs;
     }
     public function aboutus(){

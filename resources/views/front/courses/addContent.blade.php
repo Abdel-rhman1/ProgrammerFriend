@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header">Add New Content</div>
         <div class="card-body">
-            <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
+            <form method="post" action="{{route('upload')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="text" name="id" value='{{$id}}' hidden>
                 <div class="form-group">

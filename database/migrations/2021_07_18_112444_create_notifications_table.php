@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->integer('user_id');
             $table->string('notifi_content');
             $table->integer('course_id');
+            $table->tinyInteger('viewd')->default(0);
             $table->timestamps();
         });
     }

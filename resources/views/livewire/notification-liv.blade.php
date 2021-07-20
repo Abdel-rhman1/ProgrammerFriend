@@ -1,7 +1,8 @@
 <div>
+    
 @foreach ($Notifications as $Notif)
-<a href="{{route('course.profile' , $Notif->CID)}}">
-    <div class="media" >
+<a href="{{route('course.profile2' , [$Notif->CID , $Notif->NID])}}">
+    <div class="media notificationBody">
         <div class="media-body" style="margin-bottom: -40px;">
             
             <p class="notification-text font-small-3 text-muted"> {{$Notif->MName}}  Was Added New Course </p>
