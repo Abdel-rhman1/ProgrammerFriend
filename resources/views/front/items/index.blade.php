@@ -63,14 +63,8 @@
         <livewire:items/>
 
     
-        @if (count($items) == 0)
-        <div class="ThereNomatches alert alert-danger text-center col-sm-9" style="height:50px">
-            <span>
-                There No Results mathes Your Searches
-            </span>
-      </div>
+        
     </div>
-@endif
     </div>
 </div>
 </div>

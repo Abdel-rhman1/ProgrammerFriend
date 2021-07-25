@@ -13,8 +13,8 @@ class MemberController extends Controller
     public function login(){
         return view('auth.admin_login');
     }
-    public function getavatar(Request $res){
-        $member =  Member::where('ID' , $res->id)->get();
+    public function getavatar(){
+        $member =  Member::where('id' , Auth::user()->id)->get();
         return  view('front.members.image' , compact('member'));
     }
     public function save(Request $res){
@@ -122,7 +122,7 @@ class MemberController extends Controller
         }
     }
     public function all(){
-        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        $Members = Member::select('members.id as id' , 'members.Name' 
         , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
         ->join('job' , 'job.ID' , '=' , 'members.role')->get();
         $Cats = App('App\Http\Controllers\CategorieController')->index();
@@ -139,17 +139,17 @@ class MemberController extends Controller
         return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
     }
     public function getBasedOnSkill($skill){
-        //$Members = Member::where('skills' ,'like' , '%' . $skill . '%')->get();
+        $Members = Member::where('skills' ,'like' , '%' . $skill . '%')->get();
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
-        //return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
+        return view('front.members.index' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
     }
     public function getBasedOnDepart($depart){
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
-        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        $Members = Member::select('members.id as id' , 'members.Name' 
         , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
         ->join('job' , 'job.ID' , '=' , 'members.role')
         ->where('job.CatID' , $depart)->get();
@@ -159,7 +159,7 @@ class MemberController extends Controller
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
-        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        $Members = Member::select('members.id as id' , 'members.Name' 
         , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
         ->join('job' , 'job.ID' , '=' , 'members.role')
         ->where('members.Name' ,'like', '%' . $res->Name . '%')->get();
@@ -169,7 +169,7 @@ class MemberController extends Controller
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
-        $Members = Member::select('members.ID as ID' , 'members.Name' 
+        $Members = Member::select('members.id as id' , 'members.Name' 
         , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
         ->join('job' , 'job.ID' , '=' , 'members.role')
         ->where('job.Name' ,'like', '%' . $res->jobName . '%')->get();

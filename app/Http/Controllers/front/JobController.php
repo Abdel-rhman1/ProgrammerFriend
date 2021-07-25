@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Validator;
+use Notification;
 use App\Http\Controllers\Controller;
 class JobController extends Controller
 {
@@ -14,8 +15,9 @@ class JobController extends Controller
     }
     public function SearchByFirst(Request $res){
         $Name = $res->fisrt;
-        $jobs = Job::where('Name' , 'like' , '%' . $Name . '%')
-        ->orwhere('skills' , 'like' , '%' . $Name . '%')->get();
+        $jobs = Job::where('Name' , 'like' , '%'.$Name.'%')
+       ->get();
+       
         return view('front.jobs.search' , compact('jobs'));
     }
     public function Details($id){
@@ -58,6 +60,7 @@ class JobController extends Controller
                 'Posteremail'=>$res->email,
                 'InValidUpTo'=>$res->Date,
             ]);
+            
             if($job){
                 return redirect()->back()->with(['Inserted'=>'New Item Is Inserted Successfuly']);
             }else{

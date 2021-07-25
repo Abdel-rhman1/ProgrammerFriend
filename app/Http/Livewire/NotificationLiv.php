@@ -14,10 +14,8 @@ class NotificationLiv extends Component
     }
     public function render()
     {
-        $Notifications = Notification::select('notifications.id as NID' , 'notifications.notifi_content' , 'courses.Name as CName' , 'courses.ID as CID' , 'members.Name as MName' , 'notifications.created_at as CNO' )
-        ->join('members' , 'members.ID' , '=' , 'notifications.user_id')
+        $Notifications = Notification::select('notifications.id as NID' ,'notifications.viewd' , 'notifications.notifi_content' , 'courses.Name as CName' , 'courses.ID as CID' , 'notifications.created_at as CNO' )
         ->join('courses' , 'courses.ID' , '=' ,'notifications.course_id')->orderBy('notifications.created_at' , 'DESC')->paginate($this->perPage);
-       
         return view('livewire.notification-liv' , compact('Notifications'));
     }
 }

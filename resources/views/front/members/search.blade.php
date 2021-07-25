@@ -15,7 +15,7 @@
         </div>
         <div style="display: inline-block">
             <div class="MemberHead">
-                <h4><a href="{{route('Profile' , $member->ID)}}">{{$member->Name}}</a></h4>
+                <h4><a href="{{route('Profile' , $member->id)}}">{{$member->Name}}</a></h4>
             </div>
             <div class="MemberRole">
                 <span class="RoleJob">{{$member->Jobname}}</span>
@@ -30,6 +30,5 @@
         <hr classs="custom-hr">
     @endif
 @endforeach
-</div>
 </div>
 @endif

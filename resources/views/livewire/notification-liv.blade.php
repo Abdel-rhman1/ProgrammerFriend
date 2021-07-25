@@ -7,7 +7,7 @@
             
             <p class="notification-text font-small-3 text-muted"> {{$Notif->MName}}  Was Added New Course </p>
             <small style="direction: ltr;">
-                <p class=" text-muted text-center"
+                <p class=" media-meta text-muted text-center"
                       style="direction: ltr;"> 
                       {{$Notif->CNO}}
                 </p>

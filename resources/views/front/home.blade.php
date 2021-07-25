@@ -153,7 +153,7 @@
                 <div class="col-sm-3">
                     <div class="col-sm-3" style="cursor: pointer">
                         <div class="text-center">
-                            @if($Items[$S+4]->Name != null)
+                            @if(isset($Items[$S+4]->Name))
                                 <img src="{{asset('images/Items/'.$Items[$S+4]->photo)}}" width="200" height="100" style="border-radius:50% ; height:200px !important"> 
                                <p>{{$Items[$S+4]->Name}}</p>
                             @endif

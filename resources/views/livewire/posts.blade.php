@@ -1,8 +1,6 @@
 <div>
     <div class="row">
         @foreach ($jobs as $job)
-        
-        
             <div class='col-sm-3'>
                 <div class="jobDiv">
                     <p class="JobName float-left">{{$job->Name}}</p>

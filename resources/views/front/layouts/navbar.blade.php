@@ -80,7 +80,7 @@
                     
                 </li>
                 <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"
-                                                    href=""> جميع الاشعارات </a>
+                    href="{{route('getAllNotifications')}}"> جميع الاشعارات </a>
                 </li>
             </ul>
         </li>

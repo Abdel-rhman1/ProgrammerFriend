@@ -9,12 +9,8 @@
 @include('front.layouts.footer')
 <script>
     $.ajax({
-        type : 'post',
+        type : 'get',
         url  : "{{route('getavatar')}}",
-        data : {
-            "_token": "{{csrf_token()}}",
-            'id' : "{{Session('Useremail')}}",
-        },
         success:function(one , two , three){
             console.log(one);
             $('#avatar').append(one);

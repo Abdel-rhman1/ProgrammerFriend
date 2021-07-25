@@ -141,7 +141,7 @@
         });
         $('.sectionhead').mouseout(function(){
             $(this).parent().css('backgroundColor' , '#fff');
-            activeNow.css('backgroundColor' , '#f0f0f0');
+            //activeNow.css('backgroundColor' , '#f0f0f0');
         });
         $('#PersonalInfohead').click(function(){
             

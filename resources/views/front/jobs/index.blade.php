@@ -52,13 +52,15 @@
                 url : "{{route('SearchByFirst')}}",
                 data : {
                     '_token' : "{{csrf_token()}}",
-                    'fisrt' : $(this).val(),
+                    'fisrt' : $("input[name='SearchName']").val(),
                 },
                 success:function(one , two , three){
+                    console.log(one);
                     $('#DivAllJobs').html(one);
                 },
                 error:function(one , two){
-                    alert(one);
+                    console.log(one);
+                    alert("error");
                 }
             });
         });

@@ -54,14 +54,14 @@
         </div>
         <div style="display: inline-block">
             <div class="MemberHead">
-                <h4><a href="{{route('Profile' , $member->ID)}}">{{$member->Name}}</a></h4>
+                <h4><a href="{{route('Profile' , $member->id)}}">{{$member->Name}}</a></h4>
             </div>
             <div class="MemberRole">
                 <span class="RoleJob">{{$member->Jobname}}</span>
             </div>
         </div>
         
-        @if (Auth::user()->id !=$member->ID)
+        @if (Auth::user()->id !=$member->id)
             <span class="float-right Employee btn btn-success">Employee My</span>
         @endif
         
@@ -76,6 +76,7 @@
 </div>
 </div>
 @endif
+</div>
 </div>
 </div>
 <script>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Validator;
+use Auth;
+use App\Models\Notification;
+use App\Events\NewNotification;
 class JobController extends Controller
 {
     
@@ -47,6 +50,19 @@ class JobController extends Controller
                 'Posteremail'=>$res->email,
                 'InValidUpTo'=>$res->Date,
             ]);
+            $data = [
+                'user_id' => Auth::id(),
+                'user_name'  => Auth::user()->Name,
+                'course' => $res->Name,
+               
+            ];
+            Notification::create([
+                'user_id'=>Auth::user()->id,
+                'notifi_content'=>'Adding New Job',
+                'course_id'=>$job->id,
+                'created_at'=>now(),
+            ]);
+            event(new NewNotification($data));
             if($job){
                 return redirect()->back()->with(['Inserted'=>'New Item Is Inserted Successfuly']);
             }else{

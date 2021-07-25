@@ -1,4 +1,3 @@
-<p>Recommended For You</p>
 @if (count($jobs) == 0)
     <div class="alert alert-danger text-center">
         <span>
@@ -8,15 +7,14 @@
 @else
 <div class="row">
 @foreach ($jobs as $job)
-
- <a  href="{{route('JobDetails' , $job->id)}}">
+ <a  href="{{route('JobDetails' , $job->ID)}}">
     <div class='col-sm-3'>
         <div class="jobDiv">
             <p class="JobName float-left">{{$job->Name}}</p>
             <p class="float-right">Remote</p>
             <div class="UserJob">
                 <a href="mailto:{{$job->Posteremail}}">
-                        {{$job->Posteremail}}
+                    {{$job->Posteremail}}
                 </a>
             </div>
             <p class="JobDate float-left" style="color:green">{{$job->InValidUpTo}}</p>

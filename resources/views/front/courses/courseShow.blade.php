@@ -3,7 +3,14 @@
     All Projects
 @endsection
 <div class='container'>
+    @if(Session::has('msg'))
+        <div class="text-center alert alert-danger errorMsg" style="margin-top:30px">
+            <span>{{Session::get('msg')}}</span>
+            <span class="exitMsg" style="float:right;cursor:pointer;">X</span>
+        </div>        
+    @endif
     <div class="row" style='margin-top:100px'>
+        
         <div class="CourseName float-left col-sm-3">
             <h1 style="font-weight:bold">{{$course[0]->CName}}</h1>
         </div>
@@ -89,3 +96,11 @@
         </div>
 </div>
 @include('front.layouts.foot')
+<script>
+    $(function(){
+        $('.exitMsg').click(function(){
+            $('.errorMsg').hide();
+        });
+    });
+    
+</script>

@@ -35,7 +35,7 @@ Route::group(['prefix'=>'prog' , 'middleware'=>'auth:web'] , function(){
     Route::get('/profile/{id}' , 'MemberController@showprofile')->name('Profile');
     Route::post('/ShowMemberByName' , 'MemberController@showByName')->name('ShowMemberByName');
     Route::post('/ShowMemberByJob' , 'MemberController@showByJob')->name('ShowMemberByjob');
-    Route::post('/getphoto' , 'MemberController@getavatar')->name('getavatar');
+    Route::get('getphoto' , 'MemberController@getavatar')->name('getavatar');
     
 }); 
 
@@ -78,6 +78,9 @@ Route::group(['prefix'=>'jobs', 'namespace'=>'front' , 'middleware'=>'auth'] , f
     Route::get('/index' , 'JobController@index')->name('index.job');
     Route::post('searchByFirst' ,'JobController@searchByFirst')->name('SearchByFirst');
     Route::get('jobDetails/{id}' , 'JobController@Details')->name('JobDetails');
+});
+Route::group(['prefix'=>'Notif' , 'middelware'=>'auth'] , function(){
+    Route::get('/all' , 'NotificationController@index')->name('getAllNotifications');
 });
 Route::get('aboutus' , 'HomeController@aboutus')->name('aboutus');
 
