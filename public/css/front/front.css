@@ -353,6 +353,19 @@ a:hover{
 
 /* start job decoration */
 /* end job decoration */
+.job-des{
+    min-height: 40;
+    max-height: 55px;
+    height: auto;
+    overflow: hidden;
+}
+.postsInProfile{
+    max-height: 600px;
+    min-height: 500px;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .jobDetailsParent{
     max-height: 300px;
     min-height: 200px;

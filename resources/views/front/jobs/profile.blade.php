@@ -6,18 +6,10 @@
  
     <div class="row">
         <div class="col-sm-6">
-            <div class="Jobs">
-                <div class="JobBlock">
-                    <p class="JobName">JN</p>
-                    <p class="ComanyName">CN</p>
-                    <p>
-                        <span>JC</span>
-                        <span>JT</span>
-                    </p>
-                </div>
-            </div>
+            
+            <livewire:posts2/>
+            
         </div>
-       
         <div class="col-sm-6 jobDetailsParent">
             <div style="float:left">
                <h3>{{ $job->Name}}<h3>
