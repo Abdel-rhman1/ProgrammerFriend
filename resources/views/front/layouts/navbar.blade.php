@@ -102,14 +102,27 @@
                 <a class="dropdown-item" href="{{route('Profile' , [Auth::user()->id])}}">{{__('Profile')}}</a>
                 <a class="dropdown-item" href="{{route('getById' , [2  , ''])}}">{{__('Setting')}}</a>
                 <div class="dropdown-divider"></div>
-                <form class="" method="POST" action="{{route('logout')}}">
-                    <input class="dropdown-item" type="submit" Value="{{__('logout')}}"
-                     >
-                </form>
+               
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
             </div>
         </li>
 
-        
+        @else
+        <li class="nav-item" type="none">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @if (Route::has('register'))
+            <li class="nav-item" type="none">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+        @endif
         
         @endif
             @if(Session::has('Useremail'))

@@ -50,8 +50,9 @@ class MemberController extends Controller
                'password'=>'required|min:6',
                'email'=>'required|email',
                'photo'=>'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048',
-               'Role'=>'required|min:3',
-               'AboutYou'=>'required|min:100',
+               'Role'=>'required|min:1',
+               'AboutYou'=>'required|min:50',
+               'cv'=>'required',
            ],
            [
                 'Name.required'=> __('errors.Name.req'),
@@ -67,6 +68,7 @@ class MemberController extends Controller
                 'Role.min'=>__('errors.password.min'),
                 'AboutYou.required'=>__('errors.Name.req'),
                 'AboutYou.min'=>__('errors.password.min'),
+                'cv.required'=>'your is required',
            ]
        );
        if($val->fails()){
@@ -76,6 +78,9 @@ class MemberController extends Controller
             'rounds' => 12,
             ]);
             $path = 'images/Members';
+            $cvpath = 'cvs';
+            $cvExtension = $res->cv->getClientOriginalExtension();
+            $cvName = $res->Name . '.' . $cvExtension;
             $imageExten = $res->photo->getClientOriginalExtension();
             $imageName = $res->Name . '.' .$imageExten;
            $Member = Member::create([
@@ -85,9 +90,12 @@ class MemberController extends Controller
                'password'=>$hashed,
                'role'=>$res->Role,
                'about_You'=>$res->AboutYou,
+               'remember_token'=>$res->_token,
+               'cv'=>$cvName,
            ]);
            if($Member){
                $res->photo->move($path , $imageName);
+               $res->cv->move($cvpath , $cvName);
                return redirect()->back()->with(['Inserted' => __('sucess.inserted')]);
            }else{
                return redirect()->back()->with(['error'=>__('errors.errorInsertMem')]);

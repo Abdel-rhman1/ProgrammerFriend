@@ -36,7 +36,16 @@
     <tr>
         <th scope="row">{{$job->ID}}</th>
         <td>{{$job->Name}}</td>
-        <td scope="row">{{$job->description}}</td>
+        <td scope="row">
+            @php 
+                $QualificationsArray = explode ('-' , $job->description);
+            @endphp
+            <ul>
+            @foreach ($QualificationsArray as $item)
+                <li>{{$item}}</li>
+            @endforeach
+            </ul>
+        </td>
         <td scope="row"><?php
             $jobSkills = explode("_",$job->skills);
         ?>

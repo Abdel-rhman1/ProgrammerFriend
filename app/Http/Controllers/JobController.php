@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+
 use Validator;
 use Auth;
 use App\Models\Notification;
@@ -49,7 +50,11 @@ class JobController extends Controller
                 'skills'=>$res->skills,
                 'Posteremail'=>$res->email,
                 'InValidUpTo'=>$res->Date,
+                'minSalaryRange'=>7000,
+                'maxSalaryRange'=>22000,
+                'Salary'=>$res->salary,
             ]);
+            /*
             $data = [
                 'user_id' => Auth::id(),
                 'user_name'  => Auth::user()->Name,
@@ -62,7 +67,9 @@ class JobController extends Controller
                 'course_id'=>$job->id,
                 'created_at'=>now(),
             ]);
+            
             event(new NewNotification($data));
+            */
             if($job){
                 return redirect()->back()->with(['Inserted'=>'New Item Is Inserted Successfuly']);
             }else{
@@ -70,6 +77,7 @@ class JobController extends Controller
             }
         }
     }
+    
     public function update(Request $res){
         $val = Validator::make($res->all() , [
             'Name'=>'required',

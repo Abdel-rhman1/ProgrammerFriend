@@ -40,7 +40,6 @@ Route::group(['prefix'=>'prog' , 'middleware'=>'auth:web'] , function(){
 }); 
 
 Auth::routes();
-Route::post('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::group(['prefix'=>'Items' , 'middleware'=>'auth'] , function(){
@@ -78,6 +77,7 @@ Route::group(['prefix'=>'jobs', 'namespace'=>'front' , 'middleware'=>'auth'] , f
     Route::get('/index' , 'JobController@index')->name('index.job');
     Route::post('searchByFirst' ,'JobController@searchByFirst')->name('SearchByFirst');
     Route::get('jobDetails/{id}' , 'JobController@Details')->name('JobDetails');
+    Route::get('/savejob/{id}' , 'JobController@save')->name('save');
 });
 Route::group(['prefix'=>'Notif' , 'middelware'=>'auth'] , function(){
     Route::get('/all' , 'NotificationController@index')->name('getAllNotifications');

@@ -8,7 +8,7 @@ class Job extends Model
 {
     protected $table = 'job';
     protected $fillable = [
-        'Name','description','skills','Posteremail','InValidUpTo'
+        'Name','description','skills','Posteremail','InValidUpTo' , 'minSalaryRange' , 'maxSalaryRange' , 'Salary' , 
     ];
     protected $hidden =[
         

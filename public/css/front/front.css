@@ -350,3 +350,37 @@ a:hover{
     background-color: #eee;
 }
 /*End Notifications*/
+
+/* start job decoration */
+/* end job decoration */
+.jobDetailsParent{
+    max-height: 300px;
+    min-height: 200px;
+    height: auto;
+    overflow-y:  scroll;
+    overflow-x: hidden;
+    border: 1px solid #eee;
+    margin-bottom: 40px;
+    padding:10px;
+    padding-top:30px;
+}
+.jobDetailsParent .option i{
+    color:blue;
+    font-size: 22px;
+    cursor: pointer;
+}
+.jobDetailsParent .companystat{
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+    border-left: none;
+}
+.jobDetailsParent .details .filt{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+.jobDetailsParent .details .filt span{
+    font-size: 18px;
+}

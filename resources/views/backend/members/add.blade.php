@@ -57,7 +57,19 @@
                         {{$message}}
                     </div>
                 @enderror
-                
+
+                <div class="form-group form-group-lg row">
+                    <label class="col-form-label col-sm-2" for="CvInput">
+                        CV
+                    </label>
+                    <input type="file" name="cv" id="CvInput" class="form-control col-sm-8"
+                            accept="application/pdf">
+                </div>
+                @error('cv')
+                    <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                        {{$message}}
+                    </div>
+                @enderror
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="AboutYouInput">
                         About You

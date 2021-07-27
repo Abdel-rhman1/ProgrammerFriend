@@ -4,8 +4,10 @@ namespace App\Http\Controllers\front;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\SavedJobs;
 use Validator;
 use Notification;
+use Auth;
 use App\Http\Controllers\Controller;
 class JobController extends Controller
 {
@@ -66,6 +68,17 @@ class JobController extends Controller
             }else{
                 return redirect()->back()->with(['error'=>'Error In Inserted New Item']);
             }
+        }
+    }
+    public function save($id){
+        $job = SavedJobs::create([
+            'job_id'=>$id,
+            'user_id'=>Auth::user()->id,
+        ]);
+        if($job){
+            return back()->with(['success'=>'Job Saved Successfully']);
+        }else{
+            return back()->with(['error'=>'Error In Saving  This Job']);
         }
     }
     public function update(Request $res){

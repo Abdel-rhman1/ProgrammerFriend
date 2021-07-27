@@ -34,7 +34,8 @@
                     <label class="col-form-label col-sm-2" for="DescInput">
                         description
                     </label>
-                    <input type="text" name="Description" id="DescInput" class="form-control col-sm-8" placeholder="Type Your Description">
+                    <textarea name="Description" id="DescInput" class="form-control col-sm-8" placeholder="Type Your Description" rows="7" cols="8" style="resize: none;"></textarea>
+                    <span class="offset-sm-2">Seperate after each qualified condition by - </span>
                 </div>
                 @error('Description')
                     <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
@@ -70,6 +71,22 @@
                         {{$message}}
                 </div>
                 @enderror
+
+                <div class="form-group form-group-lg row">
+                    <label class="col-form-label col-sm-2" for="salary">
+                        Salary
+                    </label>
+                    <input type="range" min="7000" max="22000" step="1000" value="12000" name="salary" id="salary" class="form-control col-sm-8" placeholder="Type Job salary">
+                    
+                    <output class="price-output" for="salary" style="margin-top:10px">12000</output>
+                </div>
+                @error('salary')
+                <div class="alert alert-danger text-center offset-sm-2 col-sm-8">
+                    {{$message}}
+                </div>
+                @enderror
+
+
                 <div class="form-group form-group-lg row">
                     <label class="col-form-label col-sm-2" for="InValidUpTo">
                         InValidUpTo
@@ -126,6 +143,9 @@
                     console.log('Error');
                 },
             });
+        });
+        $('#salary').change(function(){
+            $('.price-output').text($(this).val());
         });
     });
 </script>
