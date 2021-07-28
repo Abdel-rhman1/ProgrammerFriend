@@ -188,7 +188,7 @@ class MemberController extends Controller
         $code = app('App\Http\Controllers\QrcodeController')->generate(url()->current() , $id);
         $skills = App('App\Http\Controllers\MemberSkillController')->get($id);
         $Works = Member::where('members.id' , $id)->join('items' , 'items.User_id' , '=' , 'members.id')->get();
-        $member = Member::select('members.id' , 'members.Name' , 'job.Name as JobName' , 'countries.Name as CName' , 'members.about_You')->
+        $member = Member::select('members.id' , 'members.Name' ,'members.photo' , 'job.Name as JobName' , 'countries.Name as CName' , 'members.about_You')->
         join('job' , 'members.role' ,  '=' , 'job.ID')->join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
         return view('front.members.profile' , compact('member' , 'skills' , 'Works' , 'code'));
     }

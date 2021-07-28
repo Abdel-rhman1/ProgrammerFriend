@@ -22,6 +22,13 @@ class JobController extends Controller
        
         return view('front.jobs.search' , compact('jobs'));
     }
+    public function SearchByFirst2(Request $res){
+        $Name = $res->fisrt;
+        $jobs = Job::select('Name')->where('Name' , 'like' , '%'.$Name.'%')
+       ->get();
+       
+        return $jobs;
+    }
     public function Details($id){
         $job = Job::findOrFail($id);
 

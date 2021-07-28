@@ -11,13 +11,14 @@
         <form method="post" action="" enctype="">
         <div class="row">
         <div class="col-sm-5">
-            <div class="from-group">
+            <div class="form-group">
                 <input type="search" class="form-control form-control-lg" placeholder="Search By title , skill or Company" name="SearchName" id="Name">
                 
             </div>
         </div>
+        
         <div class="col-sm-5">
-            <div class="from-group">
+            <div class="form-group">
                 <input type="search" class="form-control form-control-lg" placeholder="Search City state , or Zip code" name="SearchCity" id="City">
                 
             </div>
@@ -25,6 +26,17 @@
         <div class="col-sm-2">
             <input type="submit" value="Search" class="btn btn-success form-control form-control-lg" id="SearchJob"> 
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <div class="Auto-Complete form-control">
+                    <p style="float:right" class="autoexit">X</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
         </form>
        
@@ -42,11 +54,19 @@
        
         @endif
     </div>
+    
 </div>
+
 <script>
     $(function(){
+        $('.Auto-Complete').hide();
+       
+        $('.autoexit').click(function(){
+            $('.Auto-Complete').hide();
+        });
         $('#Name').keyup(function(){
             //alert($(this).val());
+            $('.Auto-Complete').show();
             $.ajax({
                 type : 'post',
                 url : "{{route('SearchByFirst')}}",
@@ -57,6 +77,27 @@
                 success:function(one , two , three){
                     console.log(one);
                     $('#DivAllJobs').html(one);
+                },
+                error:function(one , two){
+                    console.log(one);
+                    alert("error");
+                }
+            });
+
+            $.ajax({
+                type : 'post',
+                url : "{{route('SearchByFirst2')}}",
+                data : {
+                    '_token' : "{{csrf_token()}}",
+                    'fisrt' : $("input[name='SearchName']").val(),
+                },
+                success:function(one , two , three){
+                    console.log(one);
+                    $('.Auto-Complete span').remove();
+                    $('.Auto-Complete br').remove();
+                    for(let i=0;i<one.length;i++){
+                        $('.Auto-Complete').append("<span class='jobname'>" + one[i].Name +"</span><br>")
+                    }
                 },
                 error:function(one , two){
                     console.log(one);

@@ -4,7 +4,7 @@
 @endsection
     <div class="memberhead2">
         <div class='text-center profileInfo' > 
-            <img src="{{asset('images/default.png')}}" height="200" width="200">
+            <img src="{{asset('images/Members') . '/' . $member->photo}}" height="200" width="200">
             <p>{{$member->Name}}</p>
             <div>
                 <span class='inde'>

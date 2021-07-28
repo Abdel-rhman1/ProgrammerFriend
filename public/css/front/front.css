@@ -199,6 +199,18 @@ a:hover{
     border-radius: 12px;
     margin-bottom: 35px;;
 }
+.Auto-Complete{
+    background-color: eee;
+    /* height: 200px; */
+    position: absolute;
+    z-index: 20;
+    width: 93%;
+    min-height: 100px;
+    max-height: 300px;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .DivAllJobs{
     background: #fff;
     height: auto;
