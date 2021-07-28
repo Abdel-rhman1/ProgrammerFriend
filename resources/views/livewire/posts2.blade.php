@@ -22,11 +22,10 @@
             </div>
         @endforeach
         </div>
-    
     @if ($jobs->hasMorePages())
-        <div text-align="center">
-            <button wire:click.prevent="loadMore" class="text-center btn btn-success">Load More</button>
+        <div class="text-cenetr" style="width: 100%;
+        text-align: center; margin-top:10px;margin-bottom:20px">
+            <button wire:click.prevent="loadMore" class="btn btn-success">Load More</button>
         </div>
         @endif
-    
 </div>

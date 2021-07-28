@@ -21,7 +21,7 @@
 
 @endforeach
 @if (count($items) == 0)
-        <div class="ThereNomatches alert alert-danger text-center col-sm-9" style="height:50px">
+        <div class="ThereNomatches alert alert-danger text-center" style="height:50px;width:100%">
             <span>
                 There No Results mathes Your Searches
             </span>

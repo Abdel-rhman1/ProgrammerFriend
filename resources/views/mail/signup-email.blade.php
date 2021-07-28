@@ -17,7 +17,8 @@
     </div>
     <div class="mailFooter" style="text-align: center">
         <span>
-            <a href="#" class="btn btn-success">Browse Our Website and Enjoy With Our all Features</a>
+            <a href="{{route('ShowCourseProfil' , $mail_data['course_id'])}}" class="btn btn-success">Browse Our Website and Enjoy With Our all Features</a>
         </span>
     </div>
+
 </div>

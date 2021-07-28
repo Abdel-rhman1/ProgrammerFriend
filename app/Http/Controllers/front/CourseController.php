@@ -113,6 +113,7 @@ class CourseController extends Controller
             $res->photo->move('images/courses' , $imageName);
             if($cor){
                 $data = [
+                    'user_id' => Auth::id(),
                     'name'=>Auth::user() -> Name,
                     'course_name'=> $res ->Name,
                 ];
@@ -219,6 +220,13 @@ class CourseController extends Controller
                 'lessonNum'=>$res->lessonNmber,
                 'courseId'=>$res->id,
             ]);
+            $data = [
+                'user_id' => Auth::id(),
+                'name'=>Auth::user() -> Name,
+                'course_name'=> $res ->Name,
+                'course_id'=>$res->id,
+            ];
+            app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com' , 'Adding  Couese Content in' . $$res ->Name);
             return redirect()->to(route('course.profile' ,$id ));
         }
     }

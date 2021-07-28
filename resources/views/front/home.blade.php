@@ -138,7 +138,7 @@
                     @while ($F++ < 4)
                         <div class="col-sm-3" style="cursor: pointer">
                             <div class="text-center">
-                                @if($Items[$F]->Name != null)
+                                @if(isset($Items[$F]->Name))
                                     <img src="{{asset('images/Items/'.$Items[$F]->photo)}}" width="200" height="100" style="border-radius:50% ; height:200px !important"> 
                                    <p>{{$Items[$F]->Name}}</p>
                                 @endif
@@ -173,15 +173,6 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-
-
-    
-      
-    
-      
-    
-    
-
 </div>
 @include('front.layouts.foot')
 

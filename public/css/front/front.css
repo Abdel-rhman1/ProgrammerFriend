@@ -365,6 +365,8 @@ a:hover{
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
+    margin-bottom: 40px;
+    border:1px solid #eee
 }
 .jobDetailsParent{
     max-height: 300px;
