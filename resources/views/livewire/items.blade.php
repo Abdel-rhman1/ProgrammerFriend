@@ -7,7 +7,7 @@
         <div class='caption'>
             <a class='' href="{{route('showProject' , $item->ID)}}">
             <div class='inner'>
-                <img src="{{asset('images/Items/'.$item->photo)}}" class="w-100 h-100">
+                <img src="{{asset('images/Items/'.$item->photo)}}" class="w-100">
             </div>
         </a>
         </div>
