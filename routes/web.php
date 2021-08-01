@@ -36,6 +36,7 @@ Route::group(['prefix'=>'prog' , 'middleware'=>'auth:web'] , function(){
     Route::post('/ShowMemberByName' , 'MemberController@showByName')->name('ShowMemberByName');
     Route::post('/ShowMemberByJob' , 'MemberController@showByJob')->name('ShowMemberByjob');
     Route::get('getphoto' , 'MemberController@getavatar')->name('getavatar');
+    Route::get('hireMy/{id}' , 'MemberController@hireMy')->name('hireMy');
     
 }); 
 
@@ -94,5 +95,4 @@ Route::post('/store-photo' , 'TelegramController@Storephoto');
 Route::get('/get_mess' , 'TelegramController@getUpdate');
 Route::get('/Send_Mail_view' , 'MailController@Show');
 Route::post('/send_Mail' , 'MailController@Send');
-
 Route::get('test-email', 'MailController@sendEmail')->name('test-email');

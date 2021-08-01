@@ -1,4 +1,4 @@
-<div>
+
     <div class="row">
     @foreach ($items as $item)
     
@@ -20,6 +20,7 @@
 </div>
 
 @endforeach
+</div>
 @if (count($items) == 0)
         <div class="ThereNomatches alert alert-danger text-center" style="height:50px;width:100%">
             <span>
@@ -27,11 +28,9 @@
             </span>
       </div>
 
-</div>
 @endif
 @if ($items->hasMorePages())
         <div text-align="center" style="margin:20px auto ; display:block">
             <button wire:click.prevent="loadMore" class="text-center btn btn-success">Load More</button>
         </div>
 @endif
-</div>

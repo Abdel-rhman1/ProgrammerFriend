@@ -1,3 +1,4 @@
+<div class="row">
 @foreach ($items as $item)
     <div class='col-sm-4'>
         <div class='allProject'>
@@ -16,3 +17,4 @@
     </div>
 </div>
 @endforeach
+</div>

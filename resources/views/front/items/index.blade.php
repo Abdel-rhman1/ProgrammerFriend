@@ -2,7 +2,7 @@
 @section('title')
     All Projects
 @endsection
-<div class='container' style="margin-top:50px">
+<div class='container' style="margin-top:50px ; margin-bottom:100px">
     <div class="row">
         <div class='col-sm-3'>
             <div class="box">
@@ -59,7 +59,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-9 row" id="contentItems">
+        <div class="col-sm-9" id="contentItems">
         <livewire:items/>
 
     

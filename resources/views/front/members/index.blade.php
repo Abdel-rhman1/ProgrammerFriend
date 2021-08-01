@@ -62,7 +62,7 @@
         </div>
         
         @if (Auth::user()->id !=$member->id)
-            <span class="float-right Employee btn btn-success">Employee My</span>
+            <a href="{{route('hireMy' , $member->id)}}" class="float-right Employee btn btn-success">Employee My</a>
         @endif
         
         <div class="Brief">

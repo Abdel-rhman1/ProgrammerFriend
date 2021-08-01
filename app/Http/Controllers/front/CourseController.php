@@ -116,6 +116,7 @@ class CourseController extends Controller
                     'user_id' => Auth::id(),
                     'name'=>Auth::user() -> Name,
                     'course_name'=> $res ->Name,
+                    
                 ];
                 app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com');
                 return redirect()->back()->with(['Inserted'=>'New Course was added']);

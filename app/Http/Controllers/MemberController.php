@@ -192,4 +192,13 @@ class MemberController extends Controller
         join('job' , 'members.role' ,  '=' , 'job.ID')->join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
         return view('front.members.profile' , compact('member' , 'skills' , 'Works' , 'code'));
     }
+    public function hireMy($id){
+        $data = [
+            'user_id' => Auth::id(),
+            'name'=>Auth::user() -> Name,
+        
+            'mail'=>Auth::user()->email,
+        ];
+        app('App\Http\Controllers\MailController')->sendEmail2($data , 'yousef777906@gmail.com' , 'Some One Request You for Job');
+    }
 }
