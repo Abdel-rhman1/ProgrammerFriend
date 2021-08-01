@@ -2,12 +2,12 @@
     <div class="row">
     @foreach ($items as $item)
     
-    <div class='col-sm-4'>
-        <div class='allProject'>
+    <div class='col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6'>
+        <div class='allProject' >
         <div class='caption'>
             <a class='' href="{{route('showProject' , $item->ID)}}">
             <div class='inner'>
-                <img src="{{asset('images/Items/'.$item->photo)}}" width="200px" height="200px">
+                <img src="{{asset('images/Items/'.$item->photo)}}" class="w-100 h-100">
             </div>
         </a>
         </div>

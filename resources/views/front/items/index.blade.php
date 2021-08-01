@@ -4,7 +4,7 @@
 @endsection
 <div class='container' style="margin-top:50px ; margin-bottom:100px">
     <div class="row">
-        <div class='col-sm-3'>
+        <div class='col-lg-3 col-md-4 col-sm-12 col-12'>
             <div class="box">
                 <label for="KeyWord">
                     Key words
@@ -59,7 +59,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-9" id="contentItems">
+        <div class="col-lg-9 col-md-8 col-sm-12 col-12" id="contentItems">
         <livewire:items/>
 
     

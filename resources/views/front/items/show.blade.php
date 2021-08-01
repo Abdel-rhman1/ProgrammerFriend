@@ -4,7 +4,7 @@
 @endsection
 <div class='container'>
     <div class="row" style='margin-top:100px'>
-        <div class='col-sm-4'>
+        <div class='col-md-6 col-12'>
             <div class='work-card' style="background: #fff">
                 <div class='heading'>
                     <p>Work Card</p>
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-8 work-details'>
+        <div class='col-md-6 col-12 work-details'>
             <div class="heading-work-details">
                 <p>Work Details</p>
             </div>
@@ -43,7 +43,7 @@
                 </p>
             </div>
         </div>
-        <div class='col-sm-4'>
+        <div class='col-md-6 col-12'>
             <div class='work-card2' style="background: #fff">
                 <div class='heading'>
                     <p>skills</p>

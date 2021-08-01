@@ -44,7 +44,7 @@
                         <a class="col-sm-8" href="{{asset('docs/' . $content->title)}}" target="_blank" width="100%">
                             <span class="btn btn-primary">
                                 {{$content->type}} 
-                            </span> {{$content->title}}
+                            </span> 
                         </a>
                         <a class="col-sm-4 btn btn-success" href="{{route('download' ,  $content->title)}}">download</a>
                         
