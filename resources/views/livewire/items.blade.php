@@ -2,7 +2,7 @@
     <div class="row">
     @foreach ($items as $item)
     
-    <div class='col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6'>
+    <div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6'>
         <div class='allProject' >
         <div class='caption'>
             <a class='' href="{{route('showProject' , $item->ID)}}">

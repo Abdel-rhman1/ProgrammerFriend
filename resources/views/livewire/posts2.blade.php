@@ -1,7 +1,7 @@
 <div class="postsInProfile">
     <div class="row">
         @foreach ($jobs as $job)
-            <div class='col-sm-12'>
+            <div class='col-sm-12 col-md-12 col-lg-6'>
                 <div class="jobDiv">
                     <p class="JobName float-left">{{$job->Name}}</p>
                     <p class="float-right">Remote</p>

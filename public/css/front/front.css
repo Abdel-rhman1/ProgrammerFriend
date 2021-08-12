@@ -355,6 +355,22 @@ a:hover{
 .media-body{
     padding:5px;
 }
+.notification{
+    background-color: aliceblue;
+    padding-right: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition-property:background-color;
+    transition-delay:0.5s;
+    /* transition-timing-function: ease-in-out; */
+}
+.notification:hover{
+    background-color: rgb(170, 207, 240);
+
+}
+.all-Notificationa{
+    margin-top: 20px;
+}
 .notificationBody{
     padding-bottom: 5px;
 }

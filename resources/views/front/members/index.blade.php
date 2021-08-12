@@ -65,7 +65,7 @@
             <a href="{{route('hireMy' , $member->id)}}" class="float-right Employee btn btn-success">Employee My</a>
         @endif
         
-        <div class="Brief">
+        <div class="Brief ml-5 mt-2 text-muted lead">
             {{$member->about_You}}
         </div>
     </div>

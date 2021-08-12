@@ -4,7 +4,7 @@
 @endsection
 <div class="container" style="margin-top: 50px ; margin-bottom:50px">
     <div class="row">    
-    <div class=" filterOption col-sm-3">
+    <div class="filterOption col-lg-3 col-md-6 col-sm-12 w-100">
             <h5 class="">Search About Course</h5>
             <div class="form-group">
                 <input type="text" class="form-control" name="Name" id="Name">
@@ -34,9 +34,9 @@
                 </a>
             </div>
         </div>
-        <div class='col-sm-9 row' id="Content">
+        <div class='col-sm-12 col-lg-9 row' id="Content">
             @foreach ($courses as $course)
-            <div class='col-sm-4'>
+            <div class='col-sm-6 col-md-4 col-6'>
                 <a href="{{route('course.profile' , $course->CID)}}">
                 <div class='allProject'>
                 <div class='caption'>
@@ -46,7 +46,7 @@
                 </a>
                 </div>
                     <div class='head'>
-                        <a  class="float" href='{{route('showCourse' , $course->CID)}}'>
+                        <a  class="float" href='{{route('course.profile' , $course->CID)}}'>
                             <p data-toggle="tooltip" data-placement="bottom" title="{{$course->CName}}">{{$course->CName}}</p>
                         </a>
                         <a class="text-center"href='{{route('Profile' , $course->MID)}}'>

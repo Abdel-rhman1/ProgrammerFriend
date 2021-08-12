@@ -10,7 +10,7 @@
         </h3>
         <form method="post" action="" enctype="">
         <div class="row">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <div class="form-group">
                 <input type="search" class="form-control form-control-lg" placeholder="Search By title , skill or Company" name="SearchName" id="Name">
                 
