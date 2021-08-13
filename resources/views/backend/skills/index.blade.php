@@ -2,7 +2,7 @@
 @section('title')
     All Skills
 @endsection
-<div class='container' style='margin-top:100px'>
+<div class='container my-5' style='margin-top:100px'>
     @if (Session::has('deleted'))
     <div class="alert alert-success text-center col-sm-8 offset-sm-2">
         <span>{{Session::get('deleted')}}</span>
@@ -14,9 +14,9 @@
         <span>{{Session::get('deleteError')}}</span>
     </div>
     @endif
-    <div class="table-responsive">
-    <table class="table table-striped table-dark bordered-table">
-        <thead>
+    <div class="">
+    <table class="table table-striped table-light bordered-table">
+        <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -43,7 +43,7 @@
                 <td>{{ $skill->ItemName}}</td>
                 <td>{{$ImportantTable[$skill->important]}}</td>
                 <td>{{$skill->visiable}}</td>
-                <td>
+                <td style="width:200px ; text-align:center">
                     <span>
                         <a href="{{route('editSkill' , $skill->ID)}}" class="btn btn-success">update</a>
                     </span>

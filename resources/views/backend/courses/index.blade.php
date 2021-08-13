@@ -16,9 +16,9 @@
             {{Session::get('error')}}
         </div>
     @endif
-    <div class="table-responsive">
-    <table class="table table-striped table-dark">
-        <thead>
+    <div class="">
+    <table class="table table-striped table-light">
+        <thead class="table-info">
         <tr>
             <th scope="col" class='text-center'>{{__('backend.ID')}}</th>
             <th scope="col" class='text-center'>{{__('backend.Name')}}</th>
@@ -59,7 +59,7 @@
         </tbody>
     </table>
     </div>
-    <span class="btn btn-primary btn btn-sm">
+    <span class="btn btn-outline-primary btn btn-info btn btn-sm">
         <a href="{{route('add.course')}}" style="color: white; text-decoration: none">
              {{__('backend.addnewCourse')}}
         </a>

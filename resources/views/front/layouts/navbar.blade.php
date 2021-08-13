@@ -102,7 +102,8 @@
                 style="border-radius:50% !important" 
                 src="{{asset('images/Members').'/'.Auth::user()->photo}}">
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -75px;
+    top: 62px;">
                 <a class="dropdown-item" href="{{route('Profile' , [Auth::user()->id])}}">{{__('Profile')}}</a>
                 <a class="dropdown-item" href="{{route('getById' , [2  , ''])}}">{{__('Setting')}}</a>
                 <div class="dropdown-divider"></div>

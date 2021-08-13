@@ -4,7 +4,7 @@
 @stop
 
 
-<div class="container" style="margin-top: 60px">
+<div class="container my-5">
     <h1 class="text-center">all Jobs</h1>
 
 @if(Session::has('deleted'))
@@ -17,9 +17,9 @@
     {{Session::get('error')}}
 </div>
 @endif
-<div class="table-responsive"> 
-<table class="table table-striped table-dark">
-<thead>
+<div class=""> 
+<table class="table table-striped table-light table-responsive">
+<thead class="table-dark">
 <tr>
     <th scope="col" class='text-center'>#</th>
     <th scope="col" class='text-center'>Name</th>
@@ -41,9 +41,7 @@
                 $QualificationsArray = explode ('-' , $job->description);
             @endphp
             <ul>
-            @foreach ($QualificationsArray as $item)
-                <li>{{$item}}</li>
-            @endforeach
+                 <li class="lead text-muted">{{$QualificationsArray[0]}} ...</li>            
             </ul>
         </td>
         <td scope="row"><?php
@@ -51,14 +49,14 @@
         ?>
         <div class="text-center">
         @for ($i = 0; $i<count($jobSkills)-1;$i++)
-            <span class="btn btn-xs" style="font-size:13px; color:#fff;border:2px solid #fff;margin-bottom:3px">{{$jobSkills[$i]}}</span>
+            <span class="btn btn-xs btn-outline-info" style="font-size:13px; color:#000;border:2px solid #ddd;margin-bottom:3px">{{$jobSkills[$i]}}</span>
         @endfor
         </div>
         </td>
         <td scope="row">{{$job->Posteremail}}</td>
         
         <td scope="row">{{$job->InValidUpTo}}</td>
-        <td>
+        <td class="text-center" style="width:190px">
             <span>
                 <a href="{{route('job.edit' , $job->ID)}}" class="btn btn-success btn btn-sm">update</a>
             </span>

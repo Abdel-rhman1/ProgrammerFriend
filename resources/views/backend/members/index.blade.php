@@ -3,7 +3,7 @@
     Members
 @stop
 @include('backend.layouts.navbar')
-<h1 class="text-center">all Members</h1>
+<h1 class="text-center my-5">all Members</h1>
 <div class="container">
     @if(Session::has('deleted'))
         <div class="alert alert-success text-center  offset-sm-2 col-sm-8">
@@ -15,9 +15,9 @@
             {{Session::get('errorIndelete')}}
         </div>
     @endif
-   <div class="table-responsive">
-    <table class="table table-striped table-dark">
-        <thead>
+   <div class="table-responsive ">
+    <table class="table table-striped table-light table-bordered">
+        <thead class="table-dark">
         <tr>
             
             <th scope="col">Name</th>
@@ -35,7 +35,8 @@
                 <td>{{$Member->email}}</td>
                 <td>{{$Member->role}}</td>
                 <td>{{$Member->about_You}}</td>
-                <td>
+                <td style="width: 194px;
+                text-align: center;">
                     <span>
                         <a href="{{route('member.edit' , $Member->id)}}" class="btn btn-success">update</a>
                     </span>
