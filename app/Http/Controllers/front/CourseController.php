@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\front;
 use App\Models\Course;
+use App\Models\courseRanking;
 use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Categorie;
@@ -30,8 +31,8 @@ class CourseController extends Controller
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
         ->join('members' , 'members.ID' , '=' , 'courses.InstructorID')->where('courses.ID' , '=' , $id)->get();
         $contents = Doc::where('courseId' , $id)->orderBy('lessonNum' , 'ASC')->get();
-
-        return view('front.courses.courseShow' , compact('course' , 'contents'));
+        $courseEvalute = courseRanking::where(['courseId'=>$id , 'user_id'=>Auth::id()])->get();
+        return view('front.courses.courseShow' , compact('course' , 'contents' , 'courseEvalute'));
     }
     public function showCoursefromNotify($id , $contentId){
         $course = Course::select('courses.ID as CID' ,'courses.taken as Ctoken' ,'members.ID as MID','courses.Name as CName' ,'courses.photo as Cphoto' , 'courses.Date' , 'courses.Price as CPrice' , 'members.Name as MName')
@@ -227,8 +228,26 @@ class CourseController extends Controller
                 'course_name'=> $res ->Name,
                 'course_id'=>$res->id,
             ];
-            app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com' , 'Adding  Couese Content in' . $$res ->Name);
-            return redirect()->to(route('course.profile' ,$id ));
+            app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com' , 'Adding  Couese Content in' . $res ->Name);
+            return redirect()->to(route('course.profile' , $res->id ));
         }
+    }
+    public function evalute(Request $res){
+        $val = validator::make($res->all() , [
+            'courseID'=> 'required | digit',
+            'ranking'=> 'required | min:0 | max:5',
+        ] , [
+            'courseID.required' => 'CourseID Must Be Integer',
+            'courseID.digit' => 'CourseID Msut Be digit',
+            'ranking.required'=>'ranking is required',
+            'ranking.min'=>'ranking  min is 0',
+            'ranking.max'=>'ranking max is 5',
+        ]);
+        courseRanking::create([
+            'courseId'=>$res->courseID,
+            'ranking'=> $res->ranking,
+            'user_id'=>Auth::id(),
+        ]);
+        return redirect()->to(route('course.profile' , $res->courseID ));
     }
 }

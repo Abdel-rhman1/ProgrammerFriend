@@ -67,6 +67,7 @@ Route::group(['prefix'=>'course' , 'namespace'=>'front' ,  'middleware'=>'auth']
     Route::post('/addNewContent' , 'CourseController@addnewCOntent')->name('addNewContent');
     Route::post('/uploadContent' , 'CourseController@upload')->name('upload');
     Route::get('/download/{file}' ,  'CourseController@download')->name('download');
+    ROute::post("/evalute"  , "CourseController@evalute")->name("evalute");
 });
 Route::group(['prefix'=> 'Skills' , 'middleware'=>'auth'] , function(){
     

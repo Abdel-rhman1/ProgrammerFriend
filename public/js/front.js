@@ -16,7 +16,31 @@ $( document ).ready(function() {
         }
         $(currentClass).show();
         // $(('.'+$(this)+'Content')).hide()
-
-
     });
+
+    let stars = document.querySelectorAll(".Ranking i");
+    let resetRank = document.getElementById("restRanking");
+    let rankingInput = document.getElementById("ranking");
+    console.log(stars);
+
+    for(let i=0;i<stars.length;i++){
+      stars[i].addEventListener("click" , function(){
+          
+          rankingInput.value = i+1;
+          evaluteCourse(i);
+      });
+    }
+    function evaluteCourse (starNumber){
+        for(let j = 0 ; j<=starNumber;j++){
+            stars[j].style.color = "gold";
+        }
+    }
+    resetRank.addEventListener("click" , function(){
+      for(let j = 0 ; j<5;j++){
+        stars[j].style.color = "#000";
+    }
+    });
+
 });
+
+
