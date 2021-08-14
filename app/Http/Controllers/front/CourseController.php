@@ -191,12 +191,14 @@ class CourseController extends Controller
             'lessonNmber'=>'required|Numeric',
             'lessonType'=>'required',
             'Item'=>'required|File|mimes:mp3,mp4,c,pdf,exe',
+            'lessonTitle'=>'required',
         ] , [
             'lessonNmber.required'=>'The Lesson Number Is required',
             'lessonNmber.Numeric'=>'The Lesson number be Integer',
             'lessonType.required'=>'The Lesson Type Is Required',
             'Item.required'=>'The Item is Required',
             'Item.mimes'=>'This extension Is Invalid',
+            'lessonTitle.required'=>'lesson Name Is required',
         ]);
         if($val->fails()){
             
@@ -221,6 +223,7 @@ class CourseController extends Controller
                 'type'=>$extension,
                 'lessonNum'=>$res->lessonNmber,
                 'courseId'=>$res->id,
+                'lessonName'=>$res->lessonTitle,
             ]);
             $data = [
                 'user_id' => Auth::id(),

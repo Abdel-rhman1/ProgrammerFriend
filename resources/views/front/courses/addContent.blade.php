@@ -33,6 +33,30 @@
 
                 <div class="form-group">
                     <div class="row">
+                        <label class="col-sm-2" for="lessonTitle">
+                            Lesson Title
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id= "lessonTitle" name="lessonTitle" placeholder="Type Lesson Tiltle" required>
+                        </div>
+                    </div>
+                </div>
+
+                @error('lessonTitle')
+                
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <span class="alert alert-danger">
+                                {{$message}}
+                            </span>
+                        </div>
+                    </div>
+                @enderror
+
+
+
+                <div class="form-group">
+                    <div class="row">
                         <label class="col-sm-2" for="lessonType">
                             Type
                         </label>

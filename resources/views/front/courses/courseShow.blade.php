@@ -66,7 +66,9 @@
                     </div>
                 @endif
         </form>
+        
         </div>
+        
         <div class="col-sm-4">
             <span style="line-height: 2;">offered By<span> 
             <h4 style="font-weight: bold ; margin-top:4px;color:#8d2220">{{$course[0]->MName}}</h4>
@@ -96,8 +98,9 @@
                                
                         <a class="col-sm-8" href="{{asset('docs/' . $content->title)}}" target="_blank" width="100%">
                             <span class="btn btn-primary">
-                                {{$content->type}} 
+                                {{$content->type}}  
                             </span> 
+                            {{$content->lessonName}}
                         </a>
                         <a class="col-sm-4 btn btn-success" href="{{route('download' ,  $content->title)}}">download</a>
                         

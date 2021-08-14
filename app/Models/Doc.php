@@ -8,7 +8,7 @@ class Doc extends Model
 {
     protected $table = 'docs';
     protected $fillable = [
-       'id','title','type','lessonNum','courseId'
+       'id','title','type','lessonNum','courseId' , 'lessonName'
     ];
     public $timestamp = false;
 }
