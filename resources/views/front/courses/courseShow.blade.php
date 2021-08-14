@@ -33,7 +33,6 @@
                 <span class="alert alert-success">{{$course[0]->CPrice}} Dollar</span> 
             @endif
             </div>
-            {{-- <input type="text"   value="{{$courseEvalute[0]->ranking}}" id="rankingBase" name="ranking"> --}}
             @php 
                 $ranking = 0;
             @endphp
@@ -56,8 +55,7 @@
                         <i class="fa fa-star mx-1" style = "color:block" aria-hidden="true"></i>
                     
                     @endfor
-                   
-                    
+
                 </div>
                 @if(count($courseEvalute)==0) 
                     <div class="">
