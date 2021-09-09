@@ -28,6 +28,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::get('edit/{id}' , 'MemberController@edit')->name('member.edit');
         Route::post('update' , 'MemberController@update')->name('member.update');
         Route::get('delete/{id}' , 'MemberController@delete')->name('member.delete');
+        Route::get("/exporting" , 'MemberController@ecportingExcel')->name("Member.export");
     });
 
     Route::group(['prefix'=>'Items'] , function(){

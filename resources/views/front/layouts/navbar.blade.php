@@ -19,10 +19,10 @@
                 {{__('header.serveices')}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('getById' , [1  , ''])}}">{{__('header.ser1')}}</a>
-                <a class="dropdown-item" href="{{route('getById' , [2  , ''])}}">{{__('header.ser2')}}</a>
+                <a class="dropdown-item" href="{{route('getById' , [ 1  , ''])}}">{{__('header.ser1')}}</a>
+                <a class="dropdown-item" href="{{route('getById' , [ 2  , ''])}}">{{__('header.ser2')}}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{route('getById' , [3  , ''])}}">{{__('header.ser3')}}</a>
+                <a class="dropdown-item" href="{{route('getById' , [ 3  , ''])}}">{{__('header.ser3')}}</a>
             </div>
         </li>
         <li class="nav-item">

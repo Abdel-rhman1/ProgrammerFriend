@@ -41,7 +41,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
-    public function save(Request $res , ){
+    public function save(Request $res ){
         $val = Validator::make($res->all(),[
             'email'=> 'bail|required',
             'password' => 'required|min:6',

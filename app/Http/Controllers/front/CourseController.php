@@ -117,7 +117,7 @@ class CourseController extends Controller
                     'user_id' => Auth::id(),
                     'name'=>Auth::user() -> Name,
                     'course_name'=> $res ->Name,
-                    
+                    'course_id'=>$cor->id, 
                 ];
                 app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com');
                 return redirect()->back()->with(['Inserted'=>'New Course was added']);
@@ -231,7 +231,7 @@ class CourseController extends Controller
                 'course_name'=> $res ->Name,
                 'course_id'=>$res->id,
             ];
-            app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com' , 'Adding  Couese Content in' . $res ->Name);
+            // app('App\Http\Controllers\MailController')->sendEmail($data , 'yousef777906@gmail.com' , 'Adding  Couese Content in' . $res ->Name);
             return redirect()->to(route('course.profile' , $res->id ));
         }
     }

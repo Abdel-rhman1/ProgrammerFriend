@@ -37,6 +37,7 @@ Route::group(['prefix'=>'prog' , 'middleware'=>'auth:web'] , function(){
     Route::post('/ShowMemberByJob' , 'MemberController@showByJob')->name('ShowMemberByjob');
     Route::get('getphoto' , 'MemberController@getavatar')->name('getavatar');
     Route::get('hireMy/{id}' , 'MemberController@hireMy')->name('hireMy');
+    Route::get('/downloadmembers/{file}' ,  'MemberController@download')->name('downloadmember');
     
 }); 
 

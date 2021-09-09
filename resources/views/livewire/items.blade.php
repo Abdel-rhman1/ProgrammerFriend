@@ -5,14 +5,14 @@
     <div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6'>
         <div class='allProject' >
         <div class='caption'>
-            <a class='' href="{{route('showProject' , $item->ID)}}">
+            <a class='' href="{{route('showProject' , $item->id)}}">
             <div class='inner'>
                 <img src="{{asset('images/Items/'.$item->photo)}}" class="w-100">
             </div>
         </a>
         </div>
             <div class='head'>
-                <a href='{{route('showProject' , $item->ID)}}'>
+                <a href='{{route('showProject' , $item->id)}}'>
                     <p data-toggle="tooltip" data-placement="bottom" title="{{$item->Name}}">{{$item->Name}}</p>
                 </a>
             </div>

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
+use App\Models\exports;
 use Validator;
 use Auth;
 
@@ -38,7 +39,9 @@ class MemberController extends Controller
     }
     public function index(){
         $Memebers = Member::get();
-        return view('backend.members.index' , compact('Memebers'));
+        $exports = exports::select("exports.*" , "members.Name as memberName")->where('type' , 'members')->join('members' , 'members.id' , 
+        '=' , 'exports.user_id')->get();
+        return view('backend.members.index' , compact('Memebers' , 'exports'));
     }
     public function add(){
         return view('backend.members.add');
@@ -131,8 +134,8 @@ class MemberController extends Controller
     }
     public function all(){
         $Members = Member::select('members.id as id' , 'members.Name' 
-        , 'job.Name as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
-        ->join('job' , 'job.ID' , '=' , 'members.role')->get();
+        , 'members.role as Jobname' , 'members.photo as photo' , 'members.about_You as about_You')
+        ->get();
         $Cats = App('App\Http\Controllers\CategorieController')->index();
         $Countries = App('App\Http\Controllers\CountriesController')->index();
         $skills = App('App\Http\Controllers\SkillController')->indexCollection();
@@ -184,12 +187,15 @@ class MemberController extends Controller
         return view('front.members.search' , compact('Members' ,'Cats' , 'skills' , 'Countries'));
     }
     public function showprofile($id){
-     
+       
         $code = app('App\Http\Controllers\QrcodeController')->generate(url()->current() , $id);
+       
         $skills = App('App\Http\Controllers\MemberSkillController')->get($id);
+        // return "Hello After Code";
         $Works = Member::where('members.id' , $id)->join('items' , 'items.User_id' , '=' , 'members.id')->get();
-        $member = Member::select('members.id' , 'members.Name' ,'members.photo' , 'job.Name as JobName' , 'countries.Name as CName' , 'members.about_You')->
-        join('job' , 'members.role' ,  '=' , 'job.ID')->join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
+        $member = Member::select('members.id' , 'members.Name' ,'members.photo' , 'members.role as JobName' , 'countries.Name as CName' , 'members.about_You')->
+        join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
+        // return "Hello";
         return view('front.members.profile' , compact('member' , 'skills' , 'Works' , 'code'));
     }
     public function hireMy($id){
@@ -201,4 +207,63 @@ class MemberController extends Controller
         ];
         app('App\Http\Controllers\MailController')->sendEmail2($data , 'yousef777906@gmail.com' , 'Some One Request You for Job');
     }
+    public function ecportingExcel(){
+        // return "Hello World";
+        $cvData = array("Name, Email, Role, Brief , country");
+        $members = Member::select('members.Name' , 'members.email' , 'members.role' , 'members.about_You','countries.Name as ConuryName')->join('countries' , 'countries.ID' ,'=' , 'members.CountryID')->get();
+       for($i=0;$i<count($members);$i++){
+           $cvData [] = $members[$i]->Name .','. $members[$i]->email . ',' 
+           . $members[$i]->role . ',' . $members[$i]->about_You . ',' . $members[$i]->ConuryName;
+       }
+        // return $cvData;
+
+        $filename= date('Ymd').'-'.date('his').".csv";
+        $file_path= public_path().'/exports/'.$filename;
+        $file = fopen($file_path, "w+");
+        foreach ($cvData as $cellData){
+           fputcsv($file, explode(',', $cellData));
+        }
+        fclose($file);
+        exports::create([
+            'Name'=>$filename,
+            'type'=>"members",
+            'date'=>now(),
+            'user_id'=>Auth::user()->id,
+        ]);
+        return redirect()->back()->with('message', 'Member Excel created successfully! Please download the initial file to complete it.');
+    }
+    public function download($file){
+        return response()->download(('exports/').'/'.$file);
+    }
+
+
+    // public function generateCSV(Request $request)
+    // {
+    //     // return $request;;
+    //     $csvData=array('Product Name, Product Code, Expected, Counted ,Differnce');
+    //     for($i=0;$i<count($request->product_name);$i++){
+    //         $csvData[]=$request->product_name[$i].','.$request->product_code[$i].','.$request->product_expected[$i].',' . $request->qty[$i].','
+    //         .$request->product_differnce[$i].'';
+    //     }
+    //         // foreach ($data as $product) {
+    //         //     $csvData[]=$product->name.','.$product->code.','.$product->qty.','.'';
+    //         // }
+    //         //$filename= "Abdel-rhman";
+    //         $filename= date('Ymd').'-'.date('his')."SalesGard".".csv";
+    //         $file_path= public_path().'/stock_count/'.$filename;
+    //         $file = fopen($file_path, "w+");
+    //         foreach ($csvData as $cellData){
+    //           fputcsv($file, explode(',', $cellData));
+    //         }
+    //         fclose($file);
+    //         $data["warehouse_id"] = $request->warehouse_id;
+    //         $data["type"] = "full";
+    //         $data['user_id'] = Auth::id();
+    //         $data['reference_no'] = 'scr-' . date("Ymd") . '-'. date("his");
+    //         $data['initial_file'] = $filename;
+    //         $data['is_adjusted'] = false;
+    //         StockCount::create($data);
+    //         return redirect()->back()->with('message', 'Stock Count created successfully! Please download the initial file to complete it.');
+    //         // return redirect()->back()->with('not_permitted', 'No product found!');
+    // }
 }

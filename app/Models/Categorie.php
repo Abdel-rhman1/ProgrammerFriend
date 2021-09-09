@@ -8,7 +8,7 @@ class Categorie extends Model
 {
     protected $table = 'categories';
     protected $fillable = [
-
+        
     ];
     protected $hidden = [
 
