@@ -29,7 +29,7 @@
                 <a class="nav-link" href="{{route('getSkills')}}">{{__('dashboard.skill')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">{{__('dashboard.setting')}}</a>
+                <a class="nav-link" href="{{ route('setting') }}">{{__('dashboard.setting')}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('job.index')}}">{{__('dashboard.job')}}</a>

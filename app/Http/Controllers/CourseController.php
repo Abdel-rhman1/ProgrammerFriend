@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Doc;
 use App\Models\Member;
+use App\Models\exports;
+use Auth;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
@@ -104,6 +106,7 @@ class CourseController extends Controller
                 return redirect()->back()->with(['error'=>'Error In updating This Course']);
         }
     }
+
     public function delete($id){
         $cor = Course::findOrFail($id);
         //return asset('/images/courses/').'/'.$cor->photo;
@@ -116,5 +119,33 @@ class CourseController extends Controller
         }else{
             return redirect()->back()->with(['error'=>'Error In Deleting This Course']);
         }
+    }
+
+    public function ecportingExcel(){
+        // return "Hello World";
+        $cvData = array("Name,details ,Instructor , Price , TokenBy , Date");
+        $members = Course::select('courses.Name as CName' , 'courses.details' , 'members.Name as Mname' , 'courses.Price' ,'courses.taken', 'courses.created_at')->join('members' , 'members.id' ,'=' , 'courses.InstructorID')->get();
+       for($i=0;$i<count($members);$i++){
+           $cvData [] = $members[$i]->CName .','. $members[$i]->details . ',' 
+           . $members[$i]->Mname . ',' . $members[$i]->Price . ',' . $members[$i]->taken  . ',' . $members[$i]->created_at;
+       }
+        // return $cvData;
+
+        $filename= date('Ymd').'-'.date('his').".csv";
+        $file_path= public_path().'/exports/'.$filename;
+        $file = fopen($file_path, "w+");
+        foreach ($cvData as $cellData){
+           fputcsv($file, explode(',', $cellData));
+        }
+        fclose($file);
+        exports::create([
+            'Name'=>$filename,
+            'type'=>"courses",
+            'date'=>now(),
+            'user_id'=>Auth::user()->id,
+        ]);
+
+        return response()->download(('exports/').'/'.$filename);
+        //return redirect()->back()->with('message', 'Member Excel created successfully! Please download the initial file to complete it.');
     }
 }

@@ -64,6 +64,12 @@
              {{__('backend.addnewCourse')}}
         </a>
     </span>
+
+    <span class="btn btn-outline-primary btn btn-info btn btn-sm">
+        <a href="{{route('exportexcel')}}" style="color: white; text-decoration: none">
+             {{__('backend.addnewCourse')}}
+        </a>
+    </span>
     
 </div>
 @include('backend.layouts.footer')

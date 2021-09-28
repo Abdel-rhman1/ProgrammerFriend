@@ -29,8 +29,12 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::post('update' , 'MemberController@update')->name('member.update');
         Route::get('delete/{id}' , 'MemberController@delete')->name('member.delete');
         Route::get("/exporting" , 'MemberController@ecportingExcel')->name("Member.export");
+    
     });
 
+    Route::group(['prefix'=>'Setting'] , function(){
+        Route::get("Setting" , "SettingController@index")->name("setting");
+    });
     Route::group(['prefix'=>'Items'] , function(){
         Route::get('index/{id}' , 'ItemController@index')->name('get.Items');
         Route::get('add' ,'ItemController@add' )->name('add.Items');
@@ -64,6 +68,7 @@ Route::group(['prefix'=>'dashboard'], function(){
         Route::post('update' , 'CourseController@update')->name('course.update');
         Route::get('delete/{id}' ,'CourseController@delete')->name('course.delete');
         Route::get('modify/{id}' ,  'CourseController@modify')->name('course.modify');
+        Route::get("exportexcel" , "CourseController@ecportingExcel")->name("exportexcel");
     });
     Route::group(['prefix'=>'stat'] , function(){
         Route::get('index' , 'StatController@index')->name('getstat');

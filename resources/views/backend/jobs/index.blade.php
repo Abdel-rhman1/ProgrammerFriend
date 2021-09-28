@@ -17,19 +17,19 @@
     {{Session::get('error')}}
 </div>
 @endif
-<div class=""> 
-<table class="table table-striped table-light table-responsive">
+ 
+<table class="table table-striped table-dark">
 <thead class="table-dark">
-<tr>
-    <th scope="col" class='text-center'>#</th>
-    <th scope="col" class='text-center'>Name</th>
-    <th scope="col" class='text-center'>description</th>
-    <th scope="col" class='text-center'>Skills</th>
-    <th scope="col" class='text-center'>Posteremail</th>
-    
-    <th scope="col" class="text-center">Up To </th>
-    <th scope="col" class='text-center'>Controllers</th>
-</tr>
+    <tr>
+        <th scope="col" class='text-center'>#</th>
+        <th scope="col" class='text-center'>Name</th>
+        <th scope="col" class='text-center'>description</th>
+        <th scope="col" class='text-center'>Skills</th>
+        <th scope="col" class='text-center'>Posteremail</th>
+        
+        <th scope="col" class="text-center">Up To </th>
+        <th scope="col" class='text-center'>Controllers</th>
+    </tr>
 </thead>
 <tbody>
 @foreach($jobs as $job)
@@ -68,7 +68,6 @@
 @endforeach
 </tbody>
 </table>
-</div>
 <div class="text-center" style="margin:10px auto">
     <span>{{$jobs->links()}}</span>
 </div>

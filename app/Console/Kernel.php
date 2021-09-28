@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console;
-
+use App\Mail\SignupMail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\Adding;
@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('Adding')->everyMinute();
+        //$schedule->job(SignupMail)->everyMinute();
     }
 
     /**

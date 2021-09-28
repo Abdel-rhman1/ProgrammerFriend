@@ -185,6 +185,34 @@ class CourseController extends Controller
     public function download($file){
         return response()->download(public_path('docs/').'/'.$file);
     }
+
+    public function ecportingExcel(){
+        // return "Hello World";
+        $cvData = array("Name,details ,Instructor , Price , TokenBy , Date");
+        $members = Course::select('courses.Name as CName' , 'courses.details' , 'members.Name as Mname' , 'courses.Price' ,'courses.taken', 'courses.created_at')->join('members' , 'members.id' ,'=' , 'courses.InstructorID')->get();
+       for($i=0;$i<count($members);$i++){
+           $cvData [] = $members[$i]->CName .','. $members[$i]->details . ',' 
+           . $members[$i]->Mname . ',' . $members[$i]->Price . ',' . $members[$i]->taken  . ',' . $members[$i]->created_at;
+       }
+        // return $cvData;
+
+        $filename= date('Ymd').'-'.date('his').".csv";
+        $file_path= public_path().'/exports/'.$filename;
+        $file = fopen($file_path, "w+");
+        foreach ($cvData as $cellData){
+           fputcsv($file, explode(',', $cellData));
+        }
+        fclose($file);
+        exports::create([
+            'Name'=>$filename,
+            'type'=>"courses",
+            'date'=>now(),
+            'user_id'=>Auth::user()->id,
+        ]);
+
+        return response()->download(('exports/').'/'.$file);
+        //return redirect()->back()->with('message', 'Member Excel created successfully! Please download the initial file to complete it.');
+    }
     public function upload(Request $res){
         $id = $res->id;
         $val = Validator::make($res->all() , [

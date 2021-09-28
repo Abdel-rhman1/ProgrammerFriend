@@ -9,6 +9,9 @@ body{
 .inner{
     padding:8px;
 }
+.settingItem:hover{
+    background-color: rgba(255,255,255,0.2) !important;
+}
 .tail{
     width:200px;
     border:2px solid #eee;

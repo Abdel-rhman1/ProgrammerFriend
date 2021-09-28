@@ -63,10 +63,10 @@
                
                 <td style="width:190px ; text-align:center">
                     <span>
-                        <a href="{{route('item.edit' , $Item->ID)}}" class="btn btn-success btn btn-sm">update</a>
+                        <a href="{{route('item.edit' , $Item->id)}}" class="btn btn-success btn btn-sm">update</a>
                     </span>
                     <span>
-                        <a href="{{route('item.delete' , $Item->ID)}}"class="btn btn-danger btn btn-sm">Delete</a>
+                        <a href="{{route('item.delete' , $Item->id)}}"class="btn btn-danger btn btn-sm">Delete</a>
                     </span>
                 </td>
             </tr>
