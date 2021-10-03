@@ -16,7 +16,7 @@
     @endif
     <div class="">
     <table class="table table-striped table-light bordered-table">
-        <thead class="table-dark">
+        <thead class="table-info">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>

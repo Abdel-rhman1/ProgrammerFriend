@@ -10,7 +10,6 @@
         </div>        
     @endif
     <div class="row" style='margin-top:100px'>
-        
         <div class="CourseName float-left col-sm-3">
             <h1 style="font-weight:bold">{{$course[0]->CName}}</h1>
             <div class="mt-5">
@@ -36,11 +35,10 @@
             @php 
                 $ranking = 0;
             @endphp
-            @if(count($courseEvalute)!=0) 
+            @if(isset($courseEvalute) && count($courseEvalute)>0) 
                 @php 
                     $ranking = $courseEvalute[0]->ranking;
                 @endphp
-                
             @endif
             <form class="" action="{{route("evalute")}}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -49,15 +47,12 @@
                 <div class="Ranking mt-5 mb-3 fs-4">
                     @for($i=0;$i<$ranking;$i++)
                         <i class="fa fa-star mx-1" style = "color:gold" aria-hidden="true"></i>
-                    
                     @endfor
                     @for($i=0;$i< 5 -$ranking;$i++)
                         <i class="fa fa-star mx-1" style = "color:block" aria-hidden="true"></i>
-                    
                     @endfor
-
                 </div>
-                @if(count($courseEvalute)==0) 
+                @if(isset($courseEvalute) && count($courseEvalute)==0)
                     <div class="">
                         <input class='btn btn-info' type="reset" id="restRanking" value="reset">
                         <input class="btn btn-success" type="submit" value="Evalute">
