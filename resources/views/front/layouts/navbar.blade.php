@@ -50,7 +50,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">{{__('header.setting')}}</a>
+            <a class="nav-link" href="{{ route('setting') }}">{{__('dashboard.setting')}}</a>
         </li>
         
       </ul>
@@ -103,7 +103,7 @@
                 src="{{asset('images/Members').'/'.Auth::user()->photo}}">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -75px;
-    top: 62px;">
+                    top: 62px;">
                 <a class="dropdown-item" href="{{route('Profile' , [Auth::user()->id])}}">{{__('Profile')}}</a>
                 <a class="dropdown-item" href="{{route('getById' , [2  , ''])}}">{{__('Setting')}}</a>
                 <div class="dropdown-divider"></div>

@@ -122,7 +122,7 @@
                     <input type="submit" value="add New Content" class="btn btn-success">
                 </form>
                 <div class="col-sm-2">
-                    <a href="#" class="btn btn-success">
+                    <a href="{{ route('createCubon' , [$course[0]->CID]) }}" class="btn btn-success">
                         Create Cobon
                     </a>
                 </div>

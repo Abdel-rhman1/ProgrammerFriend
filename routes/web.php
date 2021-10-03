@@ -68,14 +68,22 @@ Route::group(['prefix'=>'course' , 'namespace'=>'front' ,  'middleware'=>'auth']
     Route::post('/addNewContent' , 'CourseController@addnewCOntent')->name('addNewContent');
     Route::post('/uploadContent' , 'CourseController@upload')->name('upload');
     Route::get('/download/{file}' ,  'CourseController@download')->name('download');
-    ROute::post("/evalute"  , "CourseController@evalute")->name("evalute");
+    Route::post("/evalute"  , "CourseController@evalute")->name("evalute");
+    Route::get("/createCubon/{id}" , "CourseController@createCubon")->name("createCubon");
+    Route::post('storeCubon' , 'CourseController@storeCubon')->name('storeCubon');
+
 });
 Route::group(['prefix'=> 'Skills' , 'middleware'=>'auth'] , function(){
     
     Route::post('/index' , 'SkillController@indexByName')->name('getByName'); 
     Route::post('/getSkills' , 'SkillController@indexCollection')->name('getSkillscollection');
+    Route::get('/getSkills' , 'SkillController@indexCollection')->name('getSkills');
+    Route::get('/getUserSkills' , 'SkillController@getUserSkills')->name('getUserSkills');
     
 });
+
+
+
 Route::group(['prefix'=>'jobs', 'namespace'=>'front' , 'middleware'=>'auth'] , function(){
     Route::get('/index' , 'JobController@index')->name('index.job');
     Route::post('searchByFirst' ,'JobController@searchByFirst')->name('SearchByFirst');

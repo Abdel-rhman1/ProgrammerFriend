@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\Notification;
 use App\Models\Categorie;
 use App\Models\Doc;
+use App\Models\Cubons;
 use Validator;
 use Illuminate\Support\Facades\Stoarge;
 use Illuminate\Http\Request;
@@ -280,5 +281,44 @@ class CourseController extends Controller
             'user_id'=>Auth::id(),
         ]);
         return redirect()->to(route('course.profile' , $res->courseID ));
+    }
+
+
+    public function createCubon($id){
+        return view("front.courses.addCubon" , compact("id"));
+    }
+
+    public function storeCubon(Request $res){
+        $val = Validator::make($res->all(),
+        [
+            'startDate'=>'required|date',
+            'endDate'=>'required|date',
+            'code'=>'required|min:12',
+            'number'=>'required|min:0',
+        ],[
+            'startDate.required'=>'This field is required',
+            'startDate.date'=>'Invalid date',
+            'endDate.required'=>'This filed is required',
+            'endDate.date'=>'Invalid date',
+            'code.required'=>'this filed is required',
+            'code.min'=>'this is very small',
+            'User.required'=>'this filed is required',
+            'number.min'=>'this is very small',
+        ]);
+
+
+        // return "Hello";
+        if($val->fails()){
+            // return redirect()->back()->withErrors($val)->withInput();
+            return redirect()->back()->withErrors($val)->withInput();
+        }
+        //return "Hello";except
+        $cubon = Cubons::create($res->except("_token"));
+
+        if($cubon){
+            return redirect()->back()->with(['message'=> 'Your Cubons is Created Successfully']);
+        }else{
+            return redirect()->back()->with(['message'=> 'Error In Creating Cubons']);
+        }
     }
 }

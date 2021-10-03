@@ -434,3 +434,22 @@ a:hover{
 .Ranking i{
     font-size: 18px;
 }
+
+
+
+
+.settingItem{
+    width:100% !important;
+    padding:2px !important;
+
+}
+
+
+.skillOne:hover{
+    background-color: #2386c8 !important;
+}
+
+.selected{
+    background-color: blue !important;
+    transition: all 1s;
+}

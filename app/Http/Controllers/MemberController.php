@@ -193,7 +193,7 @@ class MemberController extends Controller
         $skills = App('App\Http\Controllers\MemberSkillController')->get($id);
         // return "Hello After Code";
         $Works = Member::where('members.id' , $id)->join('items' , 'items.User_id' , '=' , 'members.id')->get();
-        $member = Member::select('members.id' , 'members.Name' ,'members.photo' , 'members.role as JobName' , 'countries.Name as CName' , 'members.about_You')->
+        $member = Member::select('members.id' , 'members.Skills' , 'members.Name' ,'members.photo' , 'members.role as JobName' , 'countries.Name as CName' , 'members.about_You')->
         join('countries' ,'members.CountryID' , '=' , 'countries.ID' )->findOrFail($id);
         // return "Hello";
         return view('front.members.profile' , compact('member' , 'skills' , 'Works' , 'code'));

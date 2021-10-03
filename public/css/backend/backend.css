@@ -6,12 +6,19 @@ body{
     padding:2px !important;
 
 }
-.settingItem:hover{
-    background-color: rgba(255, 255, 255, 0.2) !important;
-}
+
 .selected{
     background-color: blue !important;
+    transition: all 1s;
 }
+.skillOne:hover {
+    background-color: #2386c8 !important;
+}
+
+.skillOne:hover p {
+    color:white !important;
+}
+
 #MemberImage {
     display: block;
     margin: 10px auto;

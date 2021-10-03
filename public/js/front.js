@@ -35,12 +35,31 @@ $( document ).ready(function() {
             stars[j].style.color = "gold";
         }
     }
-    resetRank.addEventListener("click" , function(){
-      for(let j = 0 ; j<5;j++){
-        stars[j].style.color = "#000";
-    }
+    $("restRanking").click(function(){
+        for(let j = 0 ; j<5;j++){
+          stars[j].style.color = "#000";
+        } 
     });
 
+    function generateRandom(length){
+      let randomChars = 'ABCDEFGHJIKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=}{}|';
+      let res="";
+      for(let i=0;i<length;i++){
+        res+=randomChars.charAt(Math.floor(Math.random()*randomChars.length));
+       
+      }
+      return res;
+    }
+    $('.selected').click(function(){
+      alert("Hello");
+      $(this).addClass('selected');
+      $(this).siblings("selected").removeClass('selected');
+    });
+    $("#generateCubon").click(function(e){
+      e.preventDefault();
+      $('#code').val(generateRandom(15));
+    })
+    
 });
 
 

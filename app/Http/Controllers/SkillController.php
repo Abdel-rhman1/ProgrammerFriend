@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Skill;
+use App\Models\Member;
+use Auth;
 use App\Models\Categorie;
 use Validator;
 class SkillController extends Controller
@@ -14,8 +16,7 @@ class SkillController extends Controller
         return view('backend.skills.index' , compact('Skills'));
     }
     public function indexCollection(){
-        $Skills=Skill::get();
-        
+        $Skills=Skill::get();    
         return $Skills;
     }
     public function indexByName(Request $res){
@@ -107,5 +108,11 @@ class SkillController extends Controller
     public function getSuffix(Request $res){
         $skills = Skill::where('Name' ,'like', '%'.$res->ID.'%')->get();
         return $skills;
+    }
+
+    public function getUserSkills(){
+        $member = Member::select("Skills")->where('id' , Auth::user()->id)->get();
+         
+        return $member;
     }
 }

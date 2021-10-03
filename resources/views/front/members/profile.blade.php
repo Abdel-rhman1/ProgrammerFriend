@@ -163,7 +163,7 @@
         });
         $('#PersonalInfohead').parent().css('backgroundColor' , '#f0f0f0');
         $('#WorksContent').hide();
-        
+
         $('#QrCode').hide();
        
     });

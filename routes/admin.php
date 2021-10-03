@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['prefix'=>'Setting'] , function(){
+    Route::get("/" , "SettingController@index")->name("setting");
+    Route::post("updateSetting"  , "SettingController@updateSetting")->name("updateSetting");
+    Route::post("updatingSkills" ,"SettingController@updateSkill")->name("updateSkills");
 
+});
 
 Route::group(['prefix'=>'dashboard'], function(){
     Route::get('/' , function(){
@@ -32,9 +37,7 @@ Route::group(['prefix'=>'dashboard'], function(){
     
     });
 
-    Route::group(['prefix'=>'Setting'] , function(){
-        Route::get("Setting" , "SettingController@index")->name("setting");
-    });
+    
     Route::group(['prefix'=>'Items'] , function(){
         Route::get('index/{id}' , 'ItemController@index')->name('get.Items');
         Route::get('add' ,'ItemController@add' )->name('add.Items');
